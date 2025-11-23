@@ -23,7 +23,7 @@
  ******************************************************************************/
 
 #define T1_TIME_MS 1000 // tFlag period 
-#define T1_PERIOD 500000 // corresponds to 1 ms at Fosc = 8Mhz, and Fpb = Fosc/2
+#define T1_PERIOD 500 // corresponds to 1 ms at Fosc = 8Mhz, and Fpb = Fosc/2
 
 extern uint16_t msCount; // incremented every 1ms, reset once equals to T1_TIME_MS
 extern uint8_t tFlag; // flag set every T1_TIME_MS ms, must be explicitely reset by the user
