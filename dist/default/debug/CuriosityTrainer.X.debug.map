@@ -4,13 +4,13 @@ Tool Name:
   c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp0000e494.00 \
-  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp0000e494.01 \
-  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp0000e494.02 \
-  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp0000e494.03 \
-  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp0000e494.04 \
-  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp0000e494.05 \
-  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp0000e494.06 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp000045b8.00 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp000045b8.01 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp000045b8.02 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp000045b8.03 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp000045b8.04 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp000045b8.05 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp000045b8.06 \
   -p33CK64MC105 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/dsPIC33CK-MC_DFP/1.8.299/xc16 \
   -o \
@@ -29,6 +29,7 @@ Command:
   build/default/debug/utils.o \
   build/default/debug/config.o \
   build/default/debug/seven_segment.o \
+  build/default/debug/keypad.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
@@ -98,12 +99,12 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x13e           0x1dd  (477)
-.text                        0x33e               0x1ae           0x285  (645)
-.dinit                       0x4ec                0x22            0x33  (51)
-.text                        0x50e                0x2c            0x42  (66)
+.text                        0x200               0x144           0x1e6  (486)
+.text                        0x344               0x2a2           0x3f3  (1011)
+.dinit                       0x5e6                0x3a            0x57  (87)
+.text                        0x620                0x5a            0x87  (135)
 
-                 Total "program" memory used (bytes):          0x4d7  (1239) 1%
+                 Total "program" memory used (bytes):          0x6b7  (1719) 2%
 
 
 "data" Memory  [Origin = 0x1000, Length = 0x2000]
@@ -117,11 +118,11 @@ reserve_data_0x1020         0x1020                 0x2             0x2  (2)
 reserve_data_0x1022         0x1022                 0x2             0x2  (2)
 reserve_data_0x1024         0x1024                 0x4             0x4  (4)
 reserve_data_0x1028         0x1028                0x28            0x28  (40)
-.nbss                       0x1050                   0             0xa  (10)
-.data                       0x105a                   0             0xc  (12)
-.bss                        0x1066                   0             0x4  (4)
+.nbss                       0x1050                   0             0xc  (12)
+.data                       0x105c                   0            0x1c  (28)
+.bss                        0x1078                   0             0x4  (4)
 
-                 Total "data" memory used (bytes):           0x6a  (106) 1%
+                 Total "data" memory used (bytes):           0x7c  (124) 1%
 
 
 Dynamic Memory Usage
@@ -129,64 +130,72 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x106a                              0x1f96  (8086)
+stack                       0x107c                              0x1f84  (8068)
 
-                 Maximum dynamic memory (bytes):         0x1f96  (8086)
+                 Maximum dynamic memory (bytes):         0x1f84  (8068)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x1050                  _delayCounterMs
-                    0x1052                  _enDelay
-                    0x1054                  _msCount
-                    0x1056                  _tFlag
-                    0x105a                  _DIG_SEGS
-                    0x1066                  _digits
+                    0x1050                  _seven_seg_enable
+                    0x1052                  _msCount
+                    0x1054                  _tFlag
+                    0x1056                  _delayCounterMs
+                    0x1058                  _enDelay
+                    0x105c                  _keys
+                    0x106c                  _DIG_SEGS
+                    0x1078                  _digits
 
 External Symbols in Data Memory (by name):
 
-                    0x105a                  _DIG_SEGS
-                    0x1050                  _delayCounterMs
-                    0x1066                  _digits
-                    0x1052                  _enDelay
-                    0x1054                  _msCount
-                    0x1056                  _tFlag
+                    0x106c                  _DIG_SEGS
+                    0x1056                  _delayCounterMs
+                    0x1078                  _digits
+                    0x1058                  _enDelay
+                    0x105c                  _keys
+                    0x1052                  _msCount
+                    0x1050                  _seven_seg_enable
+                    0x1054                  _tFlag
 
 External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000248                  __data_init_extended
                   0x000248                  __data_init
+                  0x000248                  __data_init_extended
                   0x0002fa                  __T1Interrupt
-                  0x000338                  __DefaultInterrupt
-                  0x00033e                  _init_seven_seg
-                  0x000378                  _print_seven_seg
-                  0x00039c                  _refresh_seven_seg
-                  0x0004a6                  _seven_seg_display_off
-                  0x0004c4                  _init_T1
-                  0x00050e                  _msDelay
-                  0x000528                  _main
+                  0x00033e                  __DefaultInterrupt
+                  0x000344                  _init_seven_seg
+                  0x000382                  _print_seven_seg
+                  0x0003a6                  _refresh_seven_seg
+                  0x0004b0                  _seven_seg_display_off
+                  0x0004ce                  _init_keypad
+                  0x0004f0                  _readKey
+                  0x000620                  _init_T1
+                  0x000648                  _msDelay
+                  0x000662                  _main
                   0x00af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x000338                  __DefaultInterrupt
+                  0x00033e                  __DefaultInterrupt
                   0x00af00                  __FSEC.sec
                   0x0002fa                  __T1Interrupt
                   0x000248                  __data_init
                   0x000248                  __data_init_extended
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0004c4                  _init_T1
-                  0x00033e                  _init_seven_seg
-                  0x000528                  _main
-                  0x00050e                  _msDelay
-                  0x000378                  _print_seven_seg
-                  0x00039c                  _refresh_seven_seg
-                  0x0004a6                  _seven_seg_display_off
+                  0x000620                  _init_T1
+                  0x0004ce                  _init_keypad
+                  0x000344                  _init_seven_seg
+                  0x000662                  _main
+                  0x000648                  _msDelay
+                  0x000382                  _print_seven_seg
+                  0x0004f0                  _readKey
+                  0x0003a6                  _refresh_seven_seg
+                  0x0004b0                  _seven_seg_display_off
 
 Memory Configuration
 
@@ -252,6 +261,7 @@ LOAD build/default/debug/main.o
 LOAD build/default/debug/utils.o
 LOAD build/default/debug/config.o
 LOAD build/default/debug/seven_segment.o
+LOAD build/default/debug/keypad.o
                     0x0001                  __MPLAB_BUILD = 0x1
                     0x0001                  __MPLAB_DEBUG = 0x1
                     0x0001                  __DEBUG = 0x1
@@ -288,7 +298,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x13e
+.text             0x000200        0x144
  *(.init)
  .init            0x000200         0x48 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedch.o)
                   0x000200                  __resetPRI
@@ -300,18 +310,18 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002fa         0x3e build/default/debug/config.o
+ .isr.text        0x0002fa         0x44 build/default/debug/config.o
                   0x0002fa                  __T1Interrupt
- .isr             0x000338          0x4 default_isr
-                  0x000338                  __DefaultInterrupt
+ .isr             0x00033e          0x4 default_isr
+                  0x00033e                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x00033c          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normalch.Meo)
-                  0x00033c                  __crt_start_mode
-                  0x00033c                  __crt_start_mode_normal
+                  0x000342          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normalch.Meo)
+                  0x000342                  __crt_start_mode
+                  0x000342                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -363,40 +373,45 @@ __FALTREG
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x1806
+.debug_info       0x000000       0x2324
  *(.debug_info)
- .debug_info      0x000000        0x13e build/default/debug/main.o
- .debug_info      0x00013e        0x1df build/default/debug/utils.o
- .debug_info      0x00031d        0x704 build/default/debug/config.o
- .debug_info      0x000a21        0xde5 build/default/debug/seven_segment.o
+ .debug_info      0x000000        0x14b build/default/debug/main.o
+ .debug_info      0x00014b        0x1b5 build/default/debug/utils.o
+ .debug_info      0x000300        0x737 build/default/debug/config.o
+ .debug_info      0x000a37        0xdff build/default/debug/seven_segment.o
+ .debug_info      0x001836        0xaee build/default/debug/keypad.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x2ed
+.debug_abbrev     0x000000        0x40b
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x36 build/default/debug/main.o
- .debug_abbrev    0x000036         0x96 build/default/debug/utils.o
- .debug_abbrev    0x0000cc         0xe8 build/default/debug/config.o
- .debug_abbrev    0x0001b4        0x139 build/default/debug/seven_segment.o
+ .debug_abbrev    0x000000         0x45 build/default/debug/main.o
+ .debug_abbrev    0x000045         0x96 build/default/debug/utils.o
+ .debug_abbrev    0x0000db        0x113 build/default/debug/config.o
+ .debug_abbrev    0x0001ee        0x139 build/default/debug/seven_segment.o
+ .debug_abbrev    0x000327         0xe4 build/default/debug/keypad.o
 
-.debug_line       0x000000        0x357
+.debug_line       0x000000        0x4ce
  *(.debug_line)
- .debug_line      0x000000         0x37 build/default/debug/main.o
- .debug_line      0x000037         0x93 build/default/debug/utils.o
- .debug_line      0x0000ca        0x134 build/default/debug/config.o
- .debug_line      0x0001fe        0x159 build/default/debug/seven_segment.o
+ .debug_line      0x000000         0x39 build/default/debug/main.o
+ .debug_line      0x000039         0x93 build/default/debug/utils.o
+ .debug_line      0x0000cc        0x141 build/default/debug/config.o
+ .debug_line      0x00020d        0x166 build/default/debug/seven_segment.o
+ .debug_line      0x000373        0x15b build/default/debug/keypad.o
 
-.debug_frame      0x000000        0x144
+.debug_frame      0x000000        0x18c
  *(.debug_frame)
  .debug_frame     0x000000         0x2e build/default/debug/main.o
  .debug_frame     0x00002e         0x2e build/default/debug/utils.o
  .debug_frame     0x00005c         0x6c build/default/debug/config.o
  .debug_frame     0x0000c8         0x7c build/default/debug/seven_segment.o
+ .debug_frame     0x000144         0x48 build/default/debug/keypad.o
 
-.debug_str        0x000000         0xb9
+.debug_str        0x000000        0x121
  *(.debug_str)
  .debug_str       0x000000          0xf build/default/debug/utils.o
- .debug_str       0x00000f         0x34 build/default/debug/config.o
- .debug_str       0x000043         0x76 build/default/debug/seven_segment.o
+ .debug_str       0x00000f         0x45 build/default/debug/config.o
+ .debug_str       0x000054         0x87 build/default/debug/seven_segment.o
+ .debug_str       0x0000db         0x46 build/default/debug/keypad.o
 
 .debug_loc
  *(.debug_loc)
@@ -405,21 +420,23 @@ __FALTREG
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x11e
+                  0x000000        0x16a
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x1b build/default/debug/main.o
  .debug_pubnames
-                  0x00001b         0x53 build/default/debug/utils.o
+                  0x00001b         0x3d build/default/debug/utils.o
  .debug_pubnames
-                  0x00006e         0x2f build/default/debug/config.o
+                  0x000058         0x5a build/default/debug/config.o
  .debug_pubnames
-                  0x00009d         0x81 build/default/debug/seven_segment.o
+                  0x0000b2         0x81 build/default/debug/seven_segment.o
+ .debug_pubnames
+                  0x000133         0x37 build/default/debug/keypad.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x60
+.debug_aranges    0x000000         0x78
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/debug/main.o
@@ -429,6 +446,8 @@ __FALTREG
                   0x000030         0x18 build/default/debug/config.o
  .debug_aranges
                   0x000048         0x18 build/default/debug/seven_segment.o
+ .debug_aranges
+                  0x000060         0x18 build/default/debug/keypad.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -2591,46 +2610,54 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000060        0x25c
+                  0x000078        0x354
  .debug_pubtypes
-                  0x000060         0x12 build/default/debug/main.o
+                  0x000078         0x12 build/default/debug/main.o
  .debug_pubtypes
-                  0x000072         0x2b build/default/debug/utils.o
+                  0x00008a         0x2b build/default/debug/utils.o
  .debug_pubtypes
-                  0x00009d         0xa1 build/default/debug/config.o
+                  0x0000b5         0xa1 build/default/debug/config.o
  .debug_pubtypes
-                  0x00013e        0x17e build/default/debug/seven_segment.o
+                  0x000156        0x17e build/default/debug/seven_segment.o
+ .debug_pubtypes
+                  0x0002d4         0xf8 build/default/debug/keypad.o
 
 __c30_signature
-                  0x0002bc         0x24
+                  0x0003cc         0x2a
  __c30_signature
-                  0x0002bc          0x6 build/default/debug/main.o
+                  0x0003cc          0x6 build/default/debug/main.o
  __c30_signature
-                  0x0002c2          0x6 build/default/debug/utils.o
+                  0x0003d2          0x6 build/default/debug/utils.o
  __c30_signature
-                  0x0002c8          0x6 build/default/debug/config.o
+                  0x0003d8          0x6 build/default/debug/config.o
  __c30_signature
-                  0x0002ce          0x6 build/default/debug/seven_segment.o
+                  0x0003de          0x6 build/default/debug/seven_segment.o
  __c30_signature
-                  0x0002d4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedch.o)
+                  0x0003e4          0x6 build/default/debug/keypad.o
  __c30_signature
-                  0x0002da          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_extendedch.o)
+                  0x0003ea          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedch.o)
+ __c30_signature
+                  0x0003f0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_extendedch.o)
 
-.nbss               0x1050          0xa
- .nbss              0x1050          0x8 build/default/debug/utils.o
-                    0x1050                  _delayCounterMs
-                    0x1052                  _enDelay
-                    0x1054                  _msCount
-                    0x1056                  _tFlag
- .nbss              0x1058          0x2 build/default/debug/seven_segment.o
+.nbss               0x1050          0xc
+ .nbss              0x1050          0x6 build/default/debug/config.o
+                    0x1050                  _seven_seg_enable
+                    0x1052                  _msCount
+                    0x1054                  _tFlag
+ .nbss              0x1056          0x4 build/default/debug/utils.o
+                    0x1056                  _delayCounterMs
+                    0x1058                  _enDelay
+ .nbss              0x105a          0x2 build/default/debug/seven_segment.o
 
-.data               0x105a          0xc
- .data              0x105a          0xc build/default/debug/seven_segment.o
-                    0x105a                  _DIG_SEGS
+.data               0x105c         0x1c
+ .data              0x105c         0x10 build/default/debug/keypad.o
+                    0x105c                  _keys
+ .data              0x106c          0xc build/default/debug/seven_segment.o
+                    0x106c                  _DIG_SEGS
 
-.bss                0x1066          0x4
- .bss               0x1066          0x4 build/default/debug/seven_segment.o
-                    0x1066                  _digits
+.bss                0x1078          0x4
+ .bss               0x1078          0x4 build/default/debug/seven_segment.o
+                    0x1078                  _digits
 
 .config_CTXT4     0x00af44          0x2
  .config_CTXT4    0x00af44          0x2 build/default/debug/config.o
@@ -2691,20 +2718,23 @@ __c30_signature
  .ivt._T1Interrupt
                   0x000016          0x2 build/default/debug/config.o
 
-.text             0x00033e        0x1ae
- .text            0x00033e        0x186 build/default/debug/seven_segment.o
-                  0x00033e                  _init_seven_seg
-                  0x000378                  _print_seven_seg
-                  0x00039c                  _refresh_seven_seg
-                  0x0004a6                  _seven_seg_display_off
- .text            0x0004c4         0x28 build/default/debug/config.o
-                  0x0004c4                  _init_T1
+.text             0x000344        0x2a2
+ .text            0x000344        0x18a build/default/debug/seven_segment.o
+                  0x000344                  _init_seven_seg
+                  0x000382                  _print_seven_seg
+                  0x0003a6                  _refresh_seven_seg
+                  0x0004b0                  _seven_seg_display_off
+ .text            0x0004ce        0x118 build/default/debug/keypad.o
+                  0x0004ce                  _init_keypad
+                  0x0004f0                  _readKey
 
-.dinit            0x0004ec         0x22
- .dinit           0x0004ec         0x22 data_init
+.dinit            0x0005e6         0x3a
+ .dinit           0x0005e6         0x3a data_init
 
-.text             0x00050e         0x2c
- .text            0x00050e         0x1a build/default/debug/utils.o
-                  0x00050e                  _msDelay
- .text            0x000528         0x12 build/default/debug/main.o
-                  0x000528                  _main
+.text             0x000620         0x5a
+ .text            0x000620         0x28 build/default/debug/config.o
+                  0x000620                  _init_T1
+ .text            0x000648         0x1a build/default/debug/utils.o
+                  0x000648                  _msDelay
+ .text            0x000662         0x18 build/default/debug/main.o
+                  0x000662                  _main

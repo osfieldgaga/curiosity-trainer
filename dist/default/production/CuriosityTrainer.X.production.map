@@ -22,6 +22,7 @@ Command:
   build/default/production/utils.o \
   build/default/production/config.o \
   build/default/production/seven_segment.o \
+  build/default/production/keypad.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
   -Tp33CK64MC105.gld.00 \
@@ -90,11 +91,11 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x144           0x1e6  (486)
-.text                        0x344               0x1b2           0x28b  (651)
-.dinit                       0x4f6                0x28            0x3c  (60)
-.text                        0x51e                0x2c            0x42  (66)
+.text                        0x344               0x302           0x483  (1155)
+.dinit                       0x646                0x3e            0x5d  (93)
+.text                        0x684                0x42            0x63  (99)
 
-                 Total "program" memory used (bytes):          0x4ef  (1263) 1%
+                 Total "program" memory used (bytes):          0x729  (1833) 2%
 
 
 "data" Memory  [Origin = 0x1000, Length = 0x2000]
@@ -102,10 +103,10 @@ section                    address   length (PC units)   length (bytes) (dec)
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                       0x1000                   0             0xc  (12)
-.data                       0x100c                   0             0xc  (12)
-.bss                        0x1018                   0             0x4  (4)
+.data                       0x100c                   0            0x20  (32)
+.bss                        0x102c                   0             0x4  (4)
 
-                 Total "data" memory used (bytes):           0x1c  (28) <1%
+                 Total "data" memory used (bytes):           0x30  (48) <1%
 
 
 Dynamic Memory Usage
@@ -113,9 +114,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x101c                              0x1fe4  (8164)
+stack                       0x1030                              0x1fd0  (8144)
 
-                 Maximum dynamic memory (bytes):         0x1fe4  (8164)
+                 Maximum dynamic memory (bytes):         0x1fd0  (8144)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
@@ -128,14 +129,16 @@ External Symbols in Data Memory (by address):
                     0x1006                  _delayCounterMs
                     0x1008                  _enDelay
                     0x100c                  _DIG_SEGS
-                    0x1018                  _digits
+                    0x101c                  _keys
+                    0x102c                  _digits
 
 External Symbols in Data Memory (by name):
 
                     0x100c                  _DIG_SEGS
                     0x1006                  _delayCounterMs
-                    0x1018                  _digits
+                    0x102c                  _digits
                     0x1008                  _enDelay
+                    0x101c                  _keys
                     0x1002                  _msCount
                     0x1000                  _seven_seg_enable
                     0x1004                  _tFlag
@@ -144,17 +147,19 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000248                  __data_init_extended
                   0x000248                  __data_init
+                  0x000248                  __data_init_extended
                   0x0002fa                  __T1Interrupt
                   0x00033e                  __DefaultInterrupt
                   0x000344                  _init_seven_seg
                   0x000382                  _print_seven_seg
                   0x0003a6                  _refresh_seven_seg
                   0x0004b0                  _seven_seg_display_off
-                  0x0004ce                  _init_T1
-                  0x00051e                  _msDelay
-                  0x000538                  _main
+                  0x0004ce                  _init_keypad
+                  0x0004f0                  _readKey
+                  0x000606                  _main
+                  0x000684                  _init_T1
+                  0x0006ac                  _msDelay
                   0x00af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
@@ -166,11 +171,13 @@ External Symbols in Program Memory (by name):
                   0x000248                  __data_init_extended
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0004ce                  _init_T1
+                  0x000684                  _init_T1
+                  0x0004ce                  _init_keypad
                   0x000344                  _init_seven_seg
-                  0x000538                  _main
-                  0x00051e                  _msDelay
+                  0x000606                  _main
+                  0x0006ac                  _msDelay
                   0x000382                  _print_seven_seg
+                  0x0004f0                  _readKey
                   0x0003a6                  _refresh_seven_seg
                   0x0004b0                  _seven_seg_display_off
 
@@ -203,6 +210,7 @@ LOAD build/default/production/main.o
 LOAD build/default/production/utils.o
 LOAD build/default/production/config.o
 LOAD build/default/production/seven_segment.o
+LOAD build/default/production/keypad.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD p33CK64MC105
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
@@ -312,40 +320,45 @@ __FALTREG
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x1829
+.debug_info       0x000000       0x2359
  *(.debug_info)
- .debug_info      0x000000        0x13e build/default/production/main.o
- .debug_info      0x00013e        0x1b5 build/default/production/utils.o
- .debug_info      0x0002f3        0x737 build/default/production/config.o
- .debug_info      0x000a2a        0xdff build/default/production/seven_segment.o
+ .debug_info      0x000000        0x15c build/default/production/main.o
+ .debug_info      0x00015c        0x1b5 build/default/production/utils.o
+ .debug_info      0x000311        0x737 build/default/production/config.o
+ .debug_info      0x000a48        0xdff build/default/production/seven_segment.o
+ .debug_info      0x001847        0xb12 build/default/production/keypad.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x318
+.debug_abbrev     0x000000        0x41a
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x36 build/default/production/main.o
- .debug_abbrev    0x000036         0x96 build/default/production/utils.o
- .debug_abbrev    0x0000cc        0x113 build/default/production/config.o
- .debug_abbrev    0x0001df        0x139 build/default/production/seven_segment.o
+ .debug_abbrev    0x000000         0x45 build/default/production/main.o
+ .debug_abbrev    0x000045         0x96 build/default/production/utils.o
+ .debug_abbrev    0x0000db        0x113 build/default/production/config.o
+ .debug_abbrev    0x0001ee        0x139 build/default/production/seven_segment.o
+ .debug_abbrev    0x000327         0xf3 build/default/production/keypad.o
 
-.debug_line       0x000000        0x371
+.debug_line       0x000000        0x4db
  *(.debug_line)
- .debug_line      0x000000         0x37 build/default/production/main.o
- .debug_line      0x000037         0x93 build/default/production/utils.o
- .debug_line      0x0000ca        0x141 build/default/production/config.o
- .debug_line      0x00020b        0x166 build/default/production/seven_segment.o
+ .debug_line      0x000000         0x3d build/default/production/main.o
+ .debug_line      0x00003d         0x93 build/default/production/utils.o
+ .debug_line      0x0000d0        0x141 build/default/production/config.o
+ .debug_line      0x000211        0x166 build/default/production/seven_segment.o
+ .debug_line      0x000377        0x164 build/default/production/keypad.o
 
-.debug_frame      0x000000        0x144
+.debug_frame      0x000000        0x18c
  *(.debug_frame)
  .debug_frame     0x000000         0x2e build/default/production/main.o
  .debug_frame     0x00002e         0x2e build/default/production/utils.o
  .debug_frame     0x00005c         0x6c build/default/production/config.o
  .debug_frame     0x0000c8         0x7c build/default/production/seven_segment.o
+ .debug_frame     0x000144         0x48 build/default/production/keypad.o
 
-.debug_str        0x000000         0xdb
+.debug_str        0x000000        0x121
  *(.debug_str)
  .debug_str       0x000000          0xf build/default/production/utils.o
  .debug_str       0x00000f         0x45 build/default/production/config.o
  .debug_str       0x000054         0x87 build/default/production/seven_segment.o
+ .debug_str       0x0000db         0x46 build/default/production/keypad.o
 
 .debug_loc
  *(.debug_loc)
@@ -354,7 +367,7 @@ __FALTREG
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x133
+                  0x000000        0x16a
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x1b build/default/production/main.o
@@ -364,11 +377,13 @@ __FALTREG
                   0x000058         0x5a build/default/production/config.o
  .debug_pubnames
                   0x0000b2         0x81 build/default/production/seven_segment.o
+ .debug_pubnames
+                  0x000133         0x37 build/default/production/keypad.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x60
+.debug_aranges    0x000000         0x78
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/main.o
@@ -378,6 +393,8 @@ __FALTREG
                   0x000030         0x18 build/default/production/config.o
  .debug_aranges
                   0x000048         0x18 build/default/production/seven_segment.o
+ .debug_aranges
+                  0x000060         0x18 build/default/production/keypad.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -2540,30 +2557,34 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000060        0x25c
+                  0x000078        0x360
  .debug_pubtypes
-                  0x000060         0x12 build/default/production/main.o
+                  0x000078         0x12 build/default/production/main.o
  .debug_pubtypes
-                  0x000072         0x2b build/default/production/utils.o
+                  0x00008a         0x2b build/default/production/utils.o
  .debug_pubtypes
-                  0x00009d         0xa1 build/default/production/config.o
+                  0x0000b5         0xa1 build/default/production/config.o
  .debug_pubtypes
-                  0x00013e        0x17e build/default/production/seven_segment.o
+                  0x000156        0x17e build/default/production/seven_segment.o
+ .debug_pubtypes
+                  0x0002d4        0x104 build/default/production/keypad.o
 
 __c30_signature
-                  0x0002bc         0x24
+                  0x0003d8         0x2a
  __c30_signature
-                  0x0002bc          0x6 build/default/production/main.o
+                  0x0003d8          0x6 build/default/production/main.o
  __c30_signature
-                  0x0002c2          0x6 build/default/production/utils.o
+                  0x0003de          0x6 build/default/production/utils.o
  __c30_signature
-                  0x0002c8          0x6 build/default/production/config.o
+                  0x0003e4          0x6 build/default/production/config.o
  __c30_signature
-                  0x0002ce          0x6 build/default/production/seven_segment.o
+                  0x0003ea          0x6 build/default/production/seven_segment.o
  __c30_signature
-                  0x0002d4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedch.o)
+                  0x0003f0          0x6 build/default/production/keypad.o
  __c30_signature
-                  0x0002da          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_extendedch.o)
+                  0x0003f6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extendedch.o)
+ __c30_signature
+                  0x0003fc          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_extendedch.o)
 
 .nbss               0x1000          0xc
  .nbss              0x1000          0x6 build/default/production/config.o
@@ -2575,13 +2596,15 @@ __c30_signature
                     0x1008                  _enDelay
  .nbss              0x100a          0x2 build/default/production/seven_segment.o
 
-.data               0x100c          0xc
- .data              0x100c          0xc build/default/production/seven_segment.o
+.data               0x100c         0x20
+ .data              0x100c         0x10 build/default/production/seven_segment.o
                     0x100c                  _DIG_SEGS
+ .data              0x101c         0x10 build/default/production/keypad.o
+                    0x101c                  _keys
 
-.bss                0x1018          0x4
- .bss               0x1018          0x4 build/default/production/seven_segment.o
-                    0x1018                  _digits
+.bss                0x102c          0x4
+ .bss               0x102c          0x4 build/default/production/seven_segment.o
+                    0x102c                  _digits
 
 .config_CTXT4     0x00af44          0x2
  .config_CTXT4    0x00af44          0x2 build/default/production/config.o
@@ -2642,20 +2665,23 @@ __c30_signature
  .ivt._T1Interrupt
                   0x000016          0x2 build/default/production/config.o
 
-.text             0x000344        0x1b2
+.text             0x000344        0x302
  .text            0x000344        0x18a build/default/production/seven_segment.o
                   0x000344                  _init_seven_seg
                   0x000382                  _print_seven_seg
                   0x0003a6                  _refresh_seven_seg
                   0x0004b0                  _seven_seg_display_off
- .text            0x0004ce         0x28 build/default/production/config.o
-                  0x0004ce                  _init_T1
+ .text            0x0004ce        0x138 build/default/production/keypad.o
+                  0x0004ce                  _init_keypad
+                  0x0004f0                  _readKey
+ .text            0x000606         0x40 build/default/production/main.o
+                  0x000606                  _main
 
-.dinit            0x0004f6         0x28
- .dinit           0x0004f6         0x28 data_init
+.dinit            0x000646         0x3e
+ .dinit           0x000646         0x3e data_init
 
-.text             0x00051e         0x2c
- .text            0x00051e         0x1a build/default/production/utils.o
-                  0x00051e                  _msDelay
- .text            0x000538         0x12 build/default/production/main.o
-                  0x000538                  _main
+.text             0x000684         0x42
+ .text            0x000684         0x28 build/default/production/config.o
+                  0x000684                  _init_T1
+ .text            0x0006ac         0x1a build/default/production/utils.o
+                  0x0006ac                  _msDelay
