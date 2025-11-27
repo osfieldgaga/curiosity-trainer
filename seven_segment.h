@@ -90,19 +90,19 @@
 
 // define segments 
 
-#define LED_A_TRIS TRISAbits.TRISA0
-#define LED_B_TRIS TRISBbits.TRISB2
-#define LED_C_TRIS TRISBbits.TRISB7
-#define LED_D_TRIS TRISBbits.TRISB9
+#define LED_A_TRIS TRISDbits.TRISD10
+#define LED_B_TRIS TRISAbits.TRISA0
+#define LED_C_TRIS TRISBbits.TRISB2
+#define LED_D_TRIS TRISAbits.TRISA3
 #define LED_E_TRIS TRISBbits.TRISB10
 #define LED_F_TRIS TRISDbits.TRISD8
 #define LED_G_TRIS TRISDbits.TRISD1
 #define LED_DP_TRIS TRISAbits.TRISA1
 
-#define LED_A LATAbits.LATA0
-#define LED_B LATBbits.LATB2
-#define LED_C LATBbits.LATB7
-#define LED_D LATBbits.LATB9
+#define LED_A LATDbits.LATD10
+#define LED_B LATAbits.LATA0
+#define LED_C LATBbits.LATB2
+#define LED_D LATAbits.LATA3
 #define LED_E LATBbits.LATB10
 #define LED_F LATDbits.LATD8
 #define LED_G LATDbits.LATD1
@@ -116,7 +116,7 @@
 #define LED_A_ANSEL ANSELAbits.ANSELA0
 #define LED_B_ANSEL ANSELBbits.ANSELB2
 #define LED_C_ANSEL ANSELBbits.ANSELB7
-#define LED_D_ANSEL ANSELBbits.ANSELB9
+#define LED_D_ANSEL ANSELAbits.ANSELA3
 #define LED_E_ANSEL ANSELBbits.ANSELB10
 #define LED_F_ANSEL ANSELDbits.ANSELD8
 #define LED_G_ANSEL ANSELDbits.ANSELD1

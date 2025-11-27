@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c pwm.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/pwm.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/pwm.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/pwm.o
 
 # Source Files
-SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c
+SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c pwm.c
 
 
 
@@ -119,6 +119,18 @@ ${OBJECTDIR}/keypad.o: keypad.c  .generated_files/flags/default/4967516f9142e797
 	@${RM} ${OBJECTDIR}/keypad.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  keypad.c  -o ${OBJECTDIR}/keypad.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/keypad.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/potentiometer.o: potentiometer.c  .generated_files/flags/default/cc41d77b0379e7408f1a0e5c998b266b04f27b05 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/potentiometer.o.d 
+	@${RM} ${OBJECTDIR}/potentiometer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  potentiometer.c  -o ${OBJECTDIR}/potentiometer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/potentiometer.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/pwm.o: pwm.c  .generated_files/flags/default/a44339f0689c600c9a6dd85a583b6a91cdb4cea6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pwm.o.d 
+	@${RM} ${OBJECTDIR}/pwm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  pwm.c  -o ${OBJECTDIR}/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pwm.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/b9fd36118f118f03de49c72447d8cc3c674787c2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
@@ -149,6 +161,18 @@ ${OBJECTDIR}/keypad.o: keypad.c  .generated_files/flags/default/837eb6873b7e6d02
 	@${RM} ${OBJECTDIR}/keypad.o.d 
 	@${RM} ${OBJECTDIR}/keypad.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  keypad.c  -o ${OBJECTDIR}/keypad.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/keypad.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/potentiometer.o: potentiometer.c  .generated_files/flags/default/4388527c170832da361ed4e21d0098a60d075ccf .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/potentiometer.o.d 
+	@${RM} ${OBJECTDIR}/potentiometer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  potentiometer.c  -o ${OBJECTDIR}/potentiometer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/potentiometer.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/pwm.o: pwm.c  .generated_files/flags/default/d3ab9d414987bab040b1fa52ed31dc560d441d7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pwm.o.d 
+	@${RM} ${OBJECTDIR}/pwm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  pwm.c  -o ${OBJECTDIR}/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pwm.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 
