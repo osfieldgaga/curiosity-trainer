@@ -93,6 +93,7 @@
 #include "config.h"
 #include "utils.h"
 #include <stdint.h>
+#include "seven_segment.h"
 
 uint8_t seven_seg_enable = FALSE;
 

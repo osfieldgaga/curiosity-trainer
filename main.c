@@ -11,41 +11,48 @@
 #include "seven_segment.h"
 #include "keypad.h"
 #include <stdint.h>
-
-#define POT PORTAbits.RA3
-#define POT_TRIS TRISAbits.TRISA3
-#define POT_ANSEL ANSELAbits.ANSELA3
+#include "potentiometer.h"
 
 int main(void) {
 
     init_T1();
     init_seven_seg();
-    init_keypad();
+    //    init_keypad();
 
-    POT_TRIS = TRIS_INPUT;
-    POT_ANSEL = ANSEL_ANALOG;
+    POT_Init();
 
-    unsigned char c, key_in;
+    //    unsigned char c, key_in;
+
+    int pot;
 
     while (1) {
 
-        key_in = readKey(KEYPAD_OUTPUT_CHAR);
+        //        key_in = readKey(KEYPAD_OUTPUT_CHAR);
+        //
+        //        if (c != key_in && key_in != 0) {
+        //            if (key_in - '0' < 10) {
+        //                c = key_in - '0';
+        //            } else {
+        //                c = key_in - 'A' + 10;
+        //            }
+        //        }
 
-        if (c != key_in && key_in != 0) {
-            if (key_in - '0' < 10) {
-                c = key_in - '0';
-            } else {
-                c = key_in - 'A' + 10;
-            }
-        }
 
-        //        print_seven_seg((POT & 0xF000) >> 12, (POT & 0xF00) >> 8, (POT & 0xF0) >> 4, POT & 0xF);
+        pot = read_pot();
 
-        if (POT > 0) {
-            print_seven_seg(1, 1, 1, 1);
-        } else {
-            print_seven_seg(5, 5, 2, 2);
-        }
+
+        // 1. Calculate the digits
+        int thousands = pot / 1000; // e.g., 2567 / 1000 = 2
+        int hundreds = (pot % 1000) / 100; // e.g., 567 / 100 = 5
+        int tens = (pot % 100) / 10; // e.g., 67 / 10 = 6
+        int ones = pot % 10; // e.g., 7 / 1 = 7
+
+        // 2. Pass the decimal digits to your display function
+        // Assuming your print_seven_seg takes four decimal digits (0-9)
+        print_seven_seg(thousands, hundreds, tens, ones);
+        //        print_seven_seg(3, 3, 3, 3);
+
+
 
     }
     return 0;
