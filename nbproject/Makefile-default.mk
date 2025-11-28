@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c examples.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/examples.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/photoresistor.o.d ${OBJECTDIR}/examples.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/examples.o
 
 # Source Files
-SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c
+SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c examples.c
 
 
 
@@ -131,6 +131,18 @@ ${OBJECTDIR}/adc.o: adc.c  .generated_files/flags/default/70c9a2b7cbd4823ca29691
 	@${RM} ${OBJECTDIR}/adc.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  adc.c  -o ${OBJECTDIR}/adc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/adc.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/photoresistor.o: photoresistor.c  .generated_files/flags/default/a52c09ac771a7f766b43f8fd93e6a8f2110decf4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/photoresistor.o.d 
+	@${RM} ${OBJECTDIR}/photoresistor.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  photoresistor.c  -o ${OBJECTDIR}/photoresistor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/photoresistor.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/examples.o: examples.c  .generated_files/flags/default/9fbdcc532de35d356c47b2549a6fee5256251e52 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/examples.o.d 
+	@${RM} ${OBJECTDIR}/examples.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  examples.c  -o ${OBJECTDIR}/examples.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/examples.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/b9fd36118f118f03de49c72447d8cc3c674787c2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
@@ -173,6 +185,18 @@ ${OBJECTDIR}/adc.o: adc.c  .generated_files/flags/default/2a8a5078a78287aa1e90ad
 	@${RM} ${OBJECTDIR}/adc.o.d 
 	@${RM} ${OBJECTDIR}/adc.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  adc.c  -o ${OBJECTDIR}/adc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/adc.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/photoresistor.o: photoresistor.c  .generated_files/flags/default/ba343471986b7e86a1f76841913ab82d7383fac7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/photoresistor.o.d 
+	@${RM} ${OBJECTDIR}/photoresistor.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  photoresistor.c  -o ${OBJECTDIR}/photoresistor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/photoresistor.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/examples.o: examples.c  .generated_files/flags/default/5e251ec6bb35808cdefdbd47ff255e918a3b18b7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/examples.o.d 
+	@${RM} ${OBJECTDIR}/examples.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  examples.c  -o ${OBJECTDIR}/examples.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/examples.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 

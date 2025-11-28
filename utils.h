@@ -68,6 +68,7 @@ extern uint8_t enDelay;
 
 
 void msDelay(int ms);
+int hex_to_decimal(int hex);
 
 
 #ifdef	__cplusplus

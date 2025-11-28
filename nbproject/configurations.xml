@@ -10,6 +10,7 @@
       <itemPath>keypad.h</itemPath>
       <itemPath>adc.h</itemPath>
       <itemPath>potentiometer.h</itemPath>
+      <itemPath>photoresistor.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -30,6 +31,8 @@
       <itemPath>keypad.c</itemPath>
       <itemPath>potentiometer.c</itemPath>
       <itemPath>adc.c</itemPath>
+      <itemPath>photoresistor.c</itemPath>
+      <itemPath>examples.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

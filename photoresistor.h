@@ -28,11 +28,10 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef POT_H
-#define	POT_H
+#ifndef PHOTORESISTOR_H
+#define	PHOTORESISTOR_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
-#include "config.h"
 
 // TODO Insert appropriate #include <>
 
@@ -64,12 +63,12 @@
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
 
-void POT_Init(void);
-int  read_pot (float min, float max);
+void LDR_Init(void);
+int  read_ldr (float min, float max);
 
-#define POT PORTAbits.RA2
-#define POT_TRIS TRISAbits.TRISA2
-#define POT_ANSEL ANSELAbits.ANSELA2
+#define LDR PORTAbits.RA2
+#define LDR_TRIS TRISAbits.TRISA2
+#define LDR_ANSEL ANSELAbits.ANSELA2
 
 #ifdef	__cplusplus
 extern "C" {
@@ -82,5 +81,5 @@ extern "C" {
 }
 #endif /* __cplusplus */
 
-#endif	/* POT_H */
+#endif	/* PHOTORESISTOR_H */
 

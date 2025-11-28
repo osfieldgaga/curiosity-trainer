@@ -15,10 +15,6 @@
 uint16_t delayCounterMs;
 uint8_t enDelay = 0;
 
-
-
-
-
 void msDelay(int ms) {
     delayCounterMs = ms;
     enDelay = 1;
@@ -28,3 +24,4 @@ void msDelay(int ms) {
     enDelay = 0;
 
 }
+

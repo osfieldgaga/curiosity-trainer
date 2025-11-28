@@ -12,6 +12,7 @@
 #include "keypad.h"
 #include <stdint.h>
 #include "potentiometer.h"
+#include "photoresistor.h"
 
 int main(void) {
 
@@ -19,11 +20,11 @@ int main(void) {
     init_seven_seg();
     //    init_keypad();
 
-    POT_Init();
+    LDR_Init();
 
     //    unsigned char c, key_in;
 
-    int pot;
+    int ldr;
 
     while (1) {
 
@@ -38,14 +39,14 @@ int main(void) {
         //        }
 
 
-        pot = read_pot();
+        ldr = read_ldr(0, 1023);
 
 
         // 1. Calculate the digits
-        int thousands = pot / 1000; // e.g., 2567 / 1000 = 2
-        int hundreds = (pot % 1000) / 100; // e.g., 567 / 100 = 5
-        int tens = (pot % 100) / 10; // e.g., 67 / 10 = 6
-        int ones = pot % 10; // e.g., 7 / 1 = 7
+        int thousands = ldr / 1000; // e.g., 2567 / 1000 = 2
+        int hundreds = (ldr % 1000) / 100; // e.g., 567 / 100 = 5
+        int tens = (ldr % 100) / 10; // e.g., 67 / 10 = 6
+        int ones = ldr % 10; // e.g., 7 / 1 = 7
 
         // 2. Pass the decimal digits to your display function
         // Assuming your print_seven_seg takes four decimal digits (0-9)
