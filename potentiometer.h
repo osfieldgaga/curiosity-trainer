@@ -63,6 +63,9 @@
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
 
+void POT_Init(void);
+int  read_pot (float min, float max);
+
 #define POT PORTAbits.RA2
 #define POT_TRIS TRISAbits.TRISA2
 #define POT_ANSEL ANSELAbits.ANSELA2

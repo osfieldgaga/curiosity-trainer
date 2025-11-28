@@ -3,13 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/utils.h</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/adc.h</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/photoresistor.c</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/config.h</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/potentiometer.h</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/potentiometer.c</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/seven_segment.h</file>
-            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/keypad.h</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/config.c</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/seven_segment.c</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/adc.c</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/main.c</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/utils.c</file>
         </group>
     </open-files>
 </project-private>
