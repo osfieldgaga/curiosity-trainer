@@ -34,8 +34,8 @@
 #include <xc.h> // include processor files - each processor file is guarded. 
 
 
-#define COL4_TRIS TRISBbits.TRISB4
-#define COL3_TRIS TRISBbits.TRISB3
+#define COL4_TRIS TRISBbits.TRISB9
+#define COL3_TRIS TRISAbits.TRISA4
 #define COL2_TRIS TRISCbits.TRISC0
 #define COL1_TRIS TRISCbits.TRISC1
 
@@ -44,8 +44,8 @@
 #define ROW2_TRIS TRISCbits.TRISC4
 #define ROW1_TRIS TRISCbits.TRISC5
 
-#define COL4 LATBbits.LATB4
-#define COL3 LATBbits.LATB3
+#define COL4 LATBbits.LATB9
+#define COL3 LATAbits.LATA4
 #define COL2 LATCbits.LATC0
 #define COL1 LATCbits.LATC1
 
@@ -54,15 +54,15 @@
 #define ROW2 PORTCbits.RC4
 #define ROW1 PORTCbits.RC5
 
-#define COL4_ANSEL ANSELBbits.ANSELB4
-#define COL3_ANSEL ANSELBbits.ANSELB3
+#define COL4_ANSEL ANSELBbits.ANSELB9
+#define COL3_ANSEL ANSELAbits.ANSELA4
 #define COL2_ANSEL ANSELCbits.ANSELC0
 #define COL1_ANSEL ANSELCbits.ANSELC1
 
 #define ROW4_ANSEL ANSELCbits.ANSELC2
 #define ROW3_ANSEL ANSELCbits.ANSELC3
-//#define ROW2_ANSEL ANSELCbits.ANSELC4
-//#define ROW1_ANSEL ANSELCbits.ANSELC5
+#define ROW2_ANSEL ANSELCbits.ANSELC4
+#define ROW1_ANSEL ANSELCbits.ANSELC5
 
 #define COL_ON 0
 #define COL_OFF 1

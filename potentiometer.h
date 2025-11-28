@@ -28,11 +28,10 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef POT_H
-#define	POT_H
+#ifndef POTENTIOMETER_H
+#define	POTENTIOMETER_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
-#include "config.h"
 
 // TODO Insert appropriate #include <>
 
@@ -82,5 +81,5 @@ extern "C" {
 }
 #endif /* __cplusplus */
 
-#endif	/* POT_H */
+#endif	/* POTENTIOMETER_H */
 

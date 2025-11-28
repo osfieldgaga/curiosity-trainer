@@ -2,7 +2,7 @@
  * File:   potentiometer.c
  * Author: Osfield
  *
- * Created on November 27, 2025, 9:38 PM
+ * Created on November 23, 2025, 6:04 PM
  */
 
 
@@ -17,7 +17,7 @@
 
 void POT_Init(void) {
     POT_TRIS = TRIS_INPUT;
-    POT_ANSEL = ANSEL_ANALOG;
+    POT_https://github.com/osfieldgaga/curiosity-trainer/pull/3/conflict?name=potentiometer.c&base_oid=b08cdda68b6787b261bdc9601023e8aaab88a70f&head_oid=1069a71d64702b43db96d391c7c49fa6f84ea767ANSEL = ANSEL_ANALOG;
 
     ADC_Init();
 

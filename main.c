@@ -10,6 +10,7 @@
 #include "config.h"
 #include "seven_segment.h"
 #include "keypad.h"
+#include "pwm.h"
 #include <stdint.h>
 #include "potentiometer.h"
 #include "photoresistor.h"
@@ -26,6 +27,8 @@ int main(void) {
 
     int ldr;
 
+//    unsigned char c, key_in;
+//
     while (1) {
 
         //        key_in = readKey(KEYPAD_OUTPUT_CHAR);
