@@ -3,6 +3,8 @@
  * Author: Osfield Gaga & Jeremy Gooch
  *
  * Created on November 23, 2025, 2:03 PM
+ * 
+ * This file sets up a 4x4 keypad
  */
 
 
@@ -10,6 +12,8 @@
 #include "keypad.h"
 #include "config.h"
 
+
+// The layout of the keypad. Can be adjusted to return any character as required
 unsigned char keys[4][4] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
