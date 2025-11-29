@@ -52,5 +52,7 @@ int read_pot(float min, float max) {
     // 4095 used for 12 bit resolution, adjust based on the resolution of
     // your ADC settings
     output_val = (((max - min) / 4095.0f) * adc_val) + min;
+    
+    return output_val;
 
 }

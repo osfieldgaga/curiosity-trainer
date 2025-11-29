@@ -5,16 +5,16 @@
         <group>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/utils.h</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/adc.h</file>
-            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/photoresistor.c</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/config.h</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/examples.h</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/potentiometer.h</file>
-            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/potentiometer.c</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/pushbuttons.h</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/seven_segment.h</file>
-            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/config.c</file>
-            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/seven_segment.c</file>
-            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/adc.c</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/keypad.h</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/photoresistor.h</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/pwm.h</file>
             <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/main.c</file>
-            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/utils.c</file>
+            <file>file:/C:/Users/Osfield/MPLABXProjects/CuriosityTrainer.X/pushbuttons.c</file>
         </group>
     </open-files>
 </project-private>

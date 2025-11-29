@@ -25,7 +25,7 @@ void init_keypad() {
     COL1_TRIS = TRIS_OUTPUT;
     COL2_TRIS = TRIS_OUTPUT;
     COL3_TRIS = TRIS_OUTPUT;
-    COL4_TRIS = TRIS_OUTPUT;
+//    COL4_TRIS = TRIS_OUTPUT;
 
     ROW1_TRIS = TRIS_INPUT;
     ROW2_TRIS = TRIS_INPUT;
@@ -35,7 +35,7 @@ void init_keypad() {
     COL1_ANSEL = ANSEL_DIGITAL;
     COL2_ANSEL = ANSEL_DIGITAL;
     COL3_ANSEL = ANSEL_DIGITAL;
-    COL4_ANSEL = ANSEL_DIGITAL;
+//    COL4_ANSEL = ANSEL_DIGITAL;
 
     //    ROW1_ANSEL = ANSEL_DIGITAL;
     //    ROW2_ANSEL = ANSEL_DIGITAL;
@@ -75,7 +75,7 @@ unsigned char readKey(uint8_t outputMode) {
         COL1 = COL_OFF;
         COL2 = COL_OFF;
         COL3 = COL_OFF;
-        COL4 = COL_OFF;
+//        COL4 = COL_OFF;
         //turn on the associated columns (1 per iteration)
         switch (i) {
             case 0: COL1 = COL_ON;
@@ -84,8 +84,8 @@ unsigned char readKey(uint8_t outputMode) {
                 break;
             case 2: COL3 = COL_ON;
                 break;
-            case 3: COL4 = COL_ON;
-                break;
+//            case 3: COL4 = COL_ON;
+//                break;
             default:;
                 break;
         }

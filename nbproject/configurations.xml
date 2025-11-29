@@ -11,6 +11,10 @@
       <itemPath>adc.h</itemPath>
       <itemPath>potentiometer.h</itemPath>
       <itemPath>photoresistor.h</itemPath>
+      <itemPath>examples.h</itemPath>
+      <itemPath>pwm.h</itemPath>
+      <itemPath>pushbuttons.h</itemPath>
+      <itemPath>led.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -32,7 +36,10 @@
       <itemPath>potentiometer.c</itemPath>
       <itemPath>adc.c</itemPath>
       <itemPath>photoresistor.c</itemPath>
+      <itemPath>pwm.c</itemPath>
       <itemPath>examples.c</itemPath>
+      <itemPath>pushbuttons.c</itemPath>
+      <itemPath>led.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

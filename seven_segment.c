@@ -45,6 +45,9 @@ uint8_t digits[4] = {0, 0, 0, 0};
  ******************************************************************************/
 void init_seven_seg() {
 
+    // seven segment depends on the timer to run
+     init_T1();
+    
     DIG4_TRIS = TRIS_OUTPUT;
     DIG3_TRIS = TRIS_OUTPUT;
     DIG2_TRIS = TRIS_OUTPUT;

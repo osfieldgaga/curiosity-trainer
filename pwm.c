@@ -101,7 +101,10 @@ void PWM4_Initialize(void) {
     __builtin_write_RPCON(0x0000);
 
     // RD8 is RP72, controlled by RPOR15[13:8]
-    RPOR15bits.RP72R = PWM4L_OFC;
+    //    RPOR15bits.RP72R = PWM4L_OFC;
+
+    // RB8 is RP40, controlled by RPOR4[5:0]
+    RPOR4bits.RP40R = PWM4L_OFC;
 
     // Lock PPS registers
     __builtin_write_RPCON(0x0800);

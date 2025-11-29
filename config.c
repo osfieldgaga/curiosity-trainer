@@ -34,7 +34,7 @@
 #pragma config BSLIM = 0x1FFF           // Boot Segment Flash Page Address Limit bits (Enter Hexadecimal value)
 
 // FOSCSEL
-#pragma config FNOSC = FRC          // Oscillator Source Selection (Internal Fast RC (FRC) Oscillator with postscaler)
+#pragma config FNOSC = FRC          // Oscillator Source Selection (Internal Fast RC (FRC) Oscillator)
 #pragma config IESO = ON                // Two-speed Oscillator Start-up Enable bit (Start up device with FRC, then switch to user-selected oscillator source)
 
 // FOSC

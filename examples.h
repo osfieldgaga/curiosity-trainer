@@ -7,28 +7,29 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef POTENTIOMETER_H
-#define	POTENTIOMETER_H
+#ifndef EXAMPLES_H
+#define	EXAMPLES_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
 
-void POT_Init(void);
-int  read_pot (float min, float max);
-
-#define POT PORTAbits.RA2
-#define POT_TRIS TRISAbits.TRISA2
-#define POT_ANSEL ANSELAbits.ANSELA2
-
-
+void example1();
+void example2();
+void example3();
+void example4();
+void example5();
+void example6();
+void example7();
+void example8();
 
 #ifdef	__cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
+
 #ifdef	__cplusplus
 }
 #endif /* __cplusplus */
 
-#endif	/* POTENTIOMETER_H */
+#endif	/* EXAMPLES_H */
 

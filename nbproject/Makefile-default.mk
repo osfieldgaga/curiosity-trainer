@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c examples.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/examples.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/photoresistor.o.d ${OBJECTDIR}/examples.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/photoresistor.o.d ${OBJECTDIR}/pwm.o.d ${OBJECTDIR}/examples.o.d ${OBJECTDIR}/pushbuttons.o.d ${OBJECTDIR}/led.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/examples.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o
 
 # Source Files
-SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c examples.c
+SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c
 
 
 
@@ -137,11 +137,29 @@ ${OBJECTDIR}/photoresistor.o: photoresistor.c  .generated_files/flags/default/a5
 	@${RM} ${OBJECTDIR}/photoresistor.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  photoresistor.c  -o ${OBJECTDIR}/photoresistor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/photoresistor.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/pwm.o: pwm.c  .generated_files/flags/default/a44339f0689c600c9a6dd85a583b6a91cdb4cea6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pwm.o.d 
+	@${RM} ${OBJECTDIR}/pwm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  pwm.c  -o ${OBJECTDIR}/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pwm.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 ${OBJECTDIR}/examples.o: examples.c  .generated_files/flags/default/9fbdcc532de35d356c47b2549a6fee5256251e52 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/examples.o.d 
 	@${RM} ${OBJECTDIR}/examples.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  examples.c  -o ${OBJECTDIR}/examples.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/examples.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/pushbuttons.o: pushbuttons.c  .generated_files/flags/default/a1e54ef5e2068f33f4449726f84a751297dc631b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pushbuttons.o.d 
+	@${RM} ${OBJECTDIR}/pushbuttons.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  pushbuttons.c  -o ${OBJECTDIR}/pushbuttons.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pushbuttons.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/led.o: led.c  .generated_files/flags/default/9d593ca56e728015358c666fb01b3b72885e0f7e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/led.o.d 
+	@${RM} ${OBJECTDIR}/led.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  led.c  -o ${OBJECTDIR}/led.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/led.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/b9fd36118f118f03de49c72447d8cc3c674787c2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
@@ -192,11 +210,29 @@ ${OBJECTDIR}/photoresistor.o: photoresistor.c  .generated_files/flags/default/ba
 	@${RM} ${OBJECTDIR}/photoresistor.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  photoresistor.c  -o ${OBJECTDIR}/photoresistor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/photoresistor.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/pwm.o: pwm.c  .generated_files/flags/default/d3ab9d414987bab040b1fa52ed31dc560d441d7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pwm.o.d 
+	@${RM} ${OBJECTDIR}/pwm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  pwm.c  -o ${OBJECTDIR}/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pwm.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 ${OBJECTDIR}/examples.o: examples.c  .generated_files/flags/default/5e251ec6bb35808cdefdbd47ff255e918a3b18b7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/examples.o.d 
 	@${RM} ${OBJECTDIR}/examples.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  examples.c  -o ${OBJECTDIR}/examples.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/examples.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/pushbuttons.o: pushbuttons.c  .generated_files/flags/default/9462e82e8ac71f6b87f0d5bd51ab23c6356e87d9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/pushbuttons.o.d 
+	@${RM} ${OBJECTDIR}/pushbuttons.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  pushbuttons.c  -o ${OBJECTDIR}/pushbuttons.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pushbuttons.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/led.o: led.c  .generated_files/flags/default/e66e1f47387fccc4dc1682f1bb4a69028a76c77d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/led.o.d 
+	@${RM} ${OBJECTDIR}/led.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  led.c  -o ${OBJECTDIR}/led.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/led.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 
