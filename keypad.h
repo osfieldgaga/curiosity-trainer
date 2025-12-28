@@ -1,9 +1,27 @@
-/* 
- * File:   
- * Author: 
- * Comments:
- * Revision history: 
- */
+/* **************************************************************************
+ *
+ *  @Company
+ *    Kettering University
+ *
+ *  @File Name
+ *    keypad.h
+ *
+ *  @Summary
+ *    Defines function prototypes for the keypad
+ *
+ *  @Description
+ *    The functions used for interfacing the keypad and the function prototypes
+ *    are defined in this header file.
+ *
+ *  @Author
+ *    Osfield Gaga & Jeremy Gooch
+ *
+ *  @Created on
+ *      November 23, 2025, 2:03 PM
+ * 
+ *  @Last modification
+ *      December 09, 2025, 11:35 AM
+/* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -14,9 +32,13 @@
 
 
 //#define COL4_TRIS TRISBbits.TRISB9
+//#define COL3_TRIS TRISAbits.TRISA4
+//#define COL2_TRIS TRISCbits.TRISC0
+//#define COL1_TRIS TRISCbits.TRISC1
+
 #define COL3_TRIS TRISAbits.TRISA4
-#define COL2_TRIS TRISCbits.TRISC0
 #define COL1_TRIS TRISCbits.TRISC1
+#define COL2_TRIS TRISCbits.TRISC0
 
 #define ROW4_TRIS TRISCbits.TRISC2
 #define ROW3_TRIS TRISCbits.TRISC3
@@ -25,8 +47,8 @@
 
 //#define COL4 LATBbits.LATB9
 #define COL3 LATAbits.LATA4
-#define COL2 LATCbits.LATC0
 #define COL1 LATCbits.LATC1
+#define COL2 LATCbits.LATC0
 
 #define ROW4 PORTCbits.RC2
 #define ROW3 PORTCbits.RC3
@@ -35,13 +57,13 @@
 
 //#define COL4_ANSEL ANSELBbits.ANSELB9
 #define COL3_ANSEL ANSELAbits.ANSELA4
-#define COL2_ANSEL ANSELCbits.ANSELC0
 #define COL1_ANSEL ANSELCbits.ANSELC1
+#define COL2_ANSEL ANSELCbits.ANSELC0
 
 #define ROW4_ANSEL ANSELCbits.ANSELC2
 #define ROW3_ANSEL ANSELCbits.ANSELC3
-#define ROW2_ANSEL ANSELCbits.ANSELC4
-#define ROW1_ANSEL ANSELCbits.ANSELC5
+//#define ROW2_ANSEL ANSELCbits.ANSELC4
+//#define ROW1_ANSEL ANSELCbits.ANSELC5
 
 #define COL_ON 0
 #define COL_OFF 1

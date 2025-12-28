@@ -1,31 +1,47 @@
 /*
- * File:   keypad.c
- * Author: Osfield Gaga & Jeremy Gooch
- *
- * Created on November 23, 2025, 2:03 PM
  * 
- * This file sets up a 4x4 keypad
+ *  @Company
+        Kettering University
+ * 
+ *  @File Name
+ *      keypad.c
+ * 
+ *  @Summary
+ *      This file sets up the keypad and provides a function to read the input keys 
+ * 
+ *  @Description
+ *      The keypad.c file contains the main initialization and configuration of 
+ *      the keypad. It provides a function to configure the IO pins and read the
+ *      input keys. By default, the keys are not debounced.
+ *  @Authors: 
+ *      Osfield Gaga & Jeremy Gooch
+ *
+ *  @Created on
+ *      November 23, 2025, 2:03 PM
+ * 
+ *  @Last modification
+ *      December 09, 2025, 11:35 AM
  */
 
 
 #include "xc.h"
 #include "keypad.h"
 #include "config.h"
-
+#include <libpic30.h>
 
 // The layout of the keypad. Can be adjusted to return any character as required
-unsigned char keys[4][4] = {
-    {'1', '2', '3', 'A'},
-    {'4', '5', '6', 'B'},
-    {'7', '8', '9', 'C'},
-    {'0', 'F', 'E', 'D'}
+unsigned char keys[4][3] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'},
+    {'A', '0', 'B'}
 };
 
 void init_keypad() {
     COL1_TRIS = TRIS_OUTPUT;
     COL2_TRIS = TRIS_OUTPUT;
     COL3_TRIS = TRIS_OUTPUT;
-//    COL4_TRIS = TRIS_OUTPUT;
+    //        COL4_TRIS = TRIS_OUTPUT;
 
     ROW1_TRIS = TRIS_INPUT;
     ROW2_TRIS = TRIS_INPUT;
@@ -35,10 +51,10 @@ void init_keypad() {
     COL1_ANSEL = ANSEL_DIGITAL;
     COL2_ANSEL = ANSEL_DIGITAL;
     COL3_ANSEL = ANSEL_DIGITAL;
-//    COL4_ANSEL = ANSEL_DIGITAL;
+    //    COL4_ANSEL = ANSEL_DIGITAL;
 
-    //    ROW1_ANSEL = ANSEL_DIGITAL;
-    //    ROW2_ANSEL = ANSEL_DIGITAL;
+    //        ROW1_ANSEL = ANSEL_DIGITAL;
+    //        ROW2_ANSEL = ANSEL_DIGITAL;
     ROW3_ANSEL = ANSEL_DIGITAL;
     ROW4_ANSEL = ANSEL_DIGITAL;
 
@@ -66,7 +82,7 @@ unsigned char readKey(uint8_t outputMode) {
     int i, j;
 
     //outer for loop for the columns
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 3; i++) {
 
         if (keyout != 0) {
             break;
@@ -75,17 +91,32 @@ unsigned char readKey(uint8_t outputMode) {
         COL1 = COL_OFF;
         COL2 = COL_OFF;
         COL3 = COL_OFF;
-//        COL4 = COL_OFF;
+        //        COL4 = COL_OFF;
         //turn on the associated columns (1 per iteration)
         switch (i) {
-            case 0: COL1 = COL_ON;
+            case 0:
+            {
+                COL1 = COL_ON;
+                COL2 = COL_OFF;
+                COL3 = COL_OFF;
                 break;
-            case 1: COL2 = COL_ON;
+            }
+            case 1:
+            {
+                COL1 = COL_OFF;
+                COL2 = COL_ON;
+                COL3 = COL_OFF;
                 break;
-            case 2: COL3 = COL_ON;
+            }
+            case 2:
+            {
+                COL1 = COL_OFF;
+                COL2 = COL_OFF;
+                COL3 = COL_ON;
                 break;
-//            case 3: COL4 = COL_ON;
-//                break;
+            }
+                //            case 3: COL4 = COL_ON;
+                //                break;
             default:;
                 break;
         }
@@ -93,26 +124,27 @@ unsigned char readKey(uint8_t outputMode) {
         for (j = 0; j < 4; j++) {
             //if we get a row value that is low, we record the keyout value
             //and break out of the loop
+
             switch (j) {
                 case 0:
-                    if (ROW1 == ROW_ON) {
+                    if (ROW1 != ROW_OFF) {
                         keyout = keys[j][i];
                     }
                     break;
                 case 1:
-                    if (ROW2 == ROW_ON) {
+                    if (ROW2 != ROW_OFF) {
                         keyout = keys[j][i];
 
                     }
                     break;
                 case 2:
-                    if (ROW3 == ROW_ON) {
+                    if (ROW3 != ROW_OFF) {
                         keyout = keys[j][i];
 
                     }
                     break;
                 case 3:
-                    if (ROW4 == ROW_ON) {
+                    if (ROW4 != ROW_OFF) {
                         keyout = keys[j][i];
 
                     }
@@ -123,10 +155,12 @@ unsigned char readKey(uint8_t outputMode) {
                     break;
             }
         }
+
+
     }
 
     // check what to output
-    
+
     if (keyout == 0) {
     } else {
         if (outputMode == KEYPAD_OUTPUT_DECIMAL) {
@@ -143,6 +177,6 @@ unsigned char readKey(uint8_t outputMode) {
             // else, but here you can add extra processing if required
         }
     }
-    
+
     return keyout;
 }

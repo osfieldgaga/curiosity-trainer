@@ -1,9 +1,27 @@
-/* 
- * File:   
- * Author: 
- * Comments:
- * Revision history: 
- */
+/* **************************************************************************
+ *
+ *  @Company
+ *    Kettering University
+ *
+ *  @File Name
+ *    utils.h
+ *
+ *  @Summary
+ *    Defines function prototypes for the utilities
+ *
+ *  @Description
+ *    The functions used for the utilities and the function prototypes
+ *    are defined in this header file.
+ *
+ *  @Author
+ *    Osfield Gaga & Jeremy Gooch
+ *
+ *  @Created on
+ *      November 22, 2025, 4:02 PM
+ * 
+ *  @Last modification
+ *      December 9, 2025, 7:10 PM
+/* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -18,9 +36,6 @@ extern uint8_t enDelay;
 
 
 void msDelay(int ms);
-int hex_to_decimal(int hex);
-
-
 
 
 #ifdef	__cplusplus

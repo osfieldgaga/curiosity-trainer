@@ -1,10 +1,27 @@
-/*
- * File:   potentiometer.c
- * Author: Osfield
+/* **************************************************************************
  *
- * Created on November 23, 2025, 6:04 PM
- */
-
+ *  @Company
+ *    Kettering University
+ *
+ *  @File Name
+ *    potentiometer.h
+ *
+ *  @Summary
+ *    Defines function prototypes for the potentiometer
+ *
+ *  @Description
+ *    The functions used for interfacing the potentiometer and the function prototypes
+ *    are defined in this header file.
+ *
+ *  @Author
+ *    Osfield Gaga & Jeremy Gooch
+ *
+ *  @Created on
+ *      November 23, 2025, 6:04 PM
+ * 
+ *  @Last modification
+ *      December 09, 2025, 5:23 PM
+/* ************************************************************************** */
 
 #include "xc.h"
 #include "adc.h"
@@ -15,38 +32,26 @@
 #define FCY 4000000UL // The 'UL' ensures it's treated as an unsigned long
 #include <libpic30.h>
 
+// initialize the potentiometer pins
 void POT_Init(void) {
     POT_TRIS = TRIS_INPUT;
-    POT_https://github.com/osfieldgaga/curiosity-trainer/pull/3/conflict?name=potentiometer.c&base_oid=b08cdda68b6787b261bdc9601023e8aaab88a70f&head_oid=1069a71d64702b43db96d391c7c49fa6f84ea767ANSEL = ANSEL_ANALOG;
+    POT_ANSEL = ANSEL_ANALOG;
 
     ADC_Init();
 
 }
 
+// read the value of the the potentiometer
 int read_pot(float min, float max) {
     // start conversion for potentiometer
 
     int adc_val = 0;
     float output_val = 0;
 
-    ADCON3Lbits.CNVCHSEL = 9;
-
-    ADSTATLbits.AN9RDY = 0; //set the ready bit to 0 since we want to start conversion
-
-    // start sampling
-    ADCON3Lbits.SHRSAMP = 1;
-
-    // wait a reasonable period of time, 100ms is much more than required
-    __delay_ms(100);
-
-    // stop sampling and start converting the sampled value
-    ADCON3Lbits.SHRSAMP = 0;
-    ADCON3Lbits.CNVRTCH = 1;
-
-    while (!ADSTATLbits.AN9RDY); // wait until conversion is done
+    ADC_Set_AN9();
 
     // value is stored in ADCBUF9
-    adc_val = ADCBUF9;
+    adc_val = ADC_Core_Read();
 
     // convert the result to match the required min and max
     // 4095 used for 12 bit resolution, adjust based on the resolution of

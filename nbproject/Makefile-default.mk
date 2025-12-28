@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c switches.c ultrasonic.c sccp.c uart.c neopixels.c buzzer.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/photoresistor.o.d ${OBJECTDIR}/pwm.o.d ${OBJECTDIR}/examples.o.d ${OBJECTDIR}/pushbuttons.o.d ${OBJECTDIR}/led.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/ultrasonic.o ${OBJECTDIR}/sccp.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/neopixels.o ${OBJECTDIR}/buzzer.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/photoresistor.o.d ${OBJECTDIR}/pwm.o.d ${OBJECTDIR}/examples.o.d ${OBJECTDIR}/pushbuttons.o.d ${OBJECTDIR}/led.o.d ${OBJECTDIR}/switches.o.d ${OBJECTDIR}/ultrasonic.o.d ${OBJECTDIR}/sccp.o.d ${OBJECTDIR}/uart.o.d ${OBJECTDIR}/neopixels.o.d ${OBJECTDIR}/buzzer.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/ultrasonic.o ${OBJECTDIR}/sccp.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/neopixels.o ${OBJECTDIR}/buzzer.o
 
 # Source Files
-SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c
+SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c switches.c ultrasonic.c sccp.c uart.c neopixels.c buzzer.c
 
 
 
@@ -161,6 +161,42 @@ ${OBJECTDIR}/led.o: led.c  .generated_files/flags/default/9d593ca56e728015358c66
 	@${RM} ${OBJECTDIR}/led.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  led.c  -o ${OBJECTDIR}/led.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/led.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/switches.o: switches.c  .generated_files/flags/default/9d358b612b334278027e23d722859977934b9cc9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/switches.o.d 
+	@${RM} ${OBJECTDIR}/switches.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  switches.c  -o ${OBJECTDIR}/switches.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/switches.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/ultrasonic.o: ultrasonic.c  .generated_files/flags/default/858b3d0ab4af2d968fc4c6896cb1dd19c74755b1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ultrasonic.o.d 
+	@${RM} ${OBJECTDIR}/ultrasonic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ultrasonic.c  -o ${OBJECTDIR}/ultrasonic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ultrasonic.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/sccp.o: sccp.c  .generated_files/flags/default/ee945e1d2c2b3eb68d5f4f88028a33becf9b7b24 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sccp.o.d 
+	@${RM} ${OBJECTDIR}/sccp.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  sccp.c  -o ${OBJECTDIR}/sccp.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/sccp.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/uart.o: uart.c  .generated_files/flags/default/a172c3794d3182e54aedb824ee7caf695d045a61 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/uart.o.d 
+	@${RM} ${OBJECTDIR}/uart.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  uart.c  -o ${OBJECTDIR}/uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/uart.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/neopixels.o: neopixels.c  .generated_files/flags/default/dc8ad253aff6e2c79df3a47360d2f1b563fdd7f7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/neopixels.o.d 
+	@${RM} ${OBJECTDIR}/neopixels.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  neopixels.c  -o ${OBJECTDIR}/neopixels.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/neopixels.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/buzzer.o: buzzer.c  .generated_files/flags/default/c6c26e2447ef5f4db8ebb832d8bdf8a1eb4aefd .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/buzzer.o.d 
+	@${RM} ${OBJECTDIR}/buzzer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  buzzer.c  -o ${OBJECTDIR}/buzzer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/buzzer.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/b9fd36118f118f03de49c72447d8cc3c674787c2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
@@ -233,6 +269,42 @@ ${OBJECTDIR}/led.o: led.c  .generated_files/flags/default/e66e1f47387fccc4dc1682
 	@${RM} ${OBJECTDIR}/led.o.d 
 	@${RM} ${OBJECTDIR}/led.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  led.c  -o ${OBJECTDIR}/led.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/led.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/switches.o: switches.c  .generated_files/flags/default/6bcf26673fa9e8251b421c14c98c341d2f2f7d1f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/switches.o.d 
+	@${RM} ${OBJECTDIR}/switches.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  switches.c  -o ${OBJECTDIR}/switches.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/switches.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/ultrasonic.o: ultrasonic.c  .generated_files/flags/default/562a49d3de8644a23a8d10ee64742869a93420a7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ultrasonic.o.d 
+	@${RM} ${OBJECTDIR}/ultrasonic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ultrasonic.c  -o ${OBJECTDIR}/ultrasonic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ultrasonic.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/sccp.o: sccp.c  .generated_files/flags/default/94daeece344c4be08eb975ef41de560b4b5a683f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sccp.o.d 
+	@${RM} ${OBJECTDIR}/sccp.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  sccp.c  -o ${OBJECTDIR}/sccp.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/sccp.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/uart.o: uart.c  .generated_files/flags/default/50659373fc427c4430dc0535a238b3eb74a29f1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/uart.o.d 
+	@${RM} ${OBJECTDIR}/uart.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  uart.c  -o ${OBJECTDIR}/uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/uart.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/neopixels.o: neopixels.c  .generated_files/flags/default/e295357eec09ab86f3f9fea53e88e0a3a3798294 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/neopixels.o.d 
+	@${RM} ${OBJECTDIR}/neopixels.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  neopixels.c  -o ${OBJECTDIR}/neopixels.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/neopixels.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/buzzer.o: buzzer.c  .generated_files/flags/default/11f374d202d96fb2e1120a6a87ad49f3e6522e2e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/buzzer.o.d 
+	@${RM} ${OBJECTDIR}/buzzer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  buzzer.c  -o ${OBJECTDIR}/buzzer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/buzzer.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 

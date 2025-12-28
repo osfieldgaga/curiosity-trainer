@@ -1,8 +1,28 @@
 /*
- * File:   potentiometer.c
- * Author: Osfield
+ * 
+ *  @Company
+        Kettering University
+ * 
+ *  @File Name
+ *      photoresistor.c
+ * 
+ *  @Summary
+ *      This file sets up the LEDs and provides functions to interact with them 
+ * 
+ *  @Description
+ *      The keypad.c file contains the main initialization and configuration of 
+ *      the LEDs. It provides functions to configure the IO pins and read the
+ *      input keys. The functions can either affect all LEDs at once, or manipulate 
+ *      them individually.
+ * 
+ *  @Authors: 
+ *      Osfield Gaga & Jeremy Gooch
  *
- * Created on November 27, 2025, 9:38 PM
+ *  @Created on
+ *      November 27, 2025, 9:38 PM
+ * 
+ *  @Last modification
+ *      December 09, 2025, 12:17 PM
  */
 
 
@@ -12,9 +32,9 @@
 #include "config.h"
 #include <stdint.h>
 
-#define FCY 4000000UL // The 'UL' ensures it's treated as an unsigned long
 #include <libpic30.h>
 
+// initialize the photoresistor pins
 void LDR_Init(void) {
     LDR_TRIS = TRIS_INPUT;
     LDR_ANSEL = ANSEL_ANALOG;
@@ -23,6 +43,7 @@ void LDR_Init(void) {
 
 }
 
+// read the value of the the photoresistor
 int read_ldr(float min, float max) {
     // start conversion for potentiometer
     

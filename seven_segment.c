@@ -12,6 +12,7 @@
 #include "seven_segment.h"
 #include "config.h"
 #include <stdint.h>
+#include <libpic30.h>
 
 /* Patterns to display
  * These patterns represent the segments to turn on, considering they are active 
@@ -30,13 +31,18 @@
  * 0xC0 = 0b11000000, which turns ON every segment except G (the middle segment)
  * and DP the decimal point
  */
-uint8_t DIG_SEGS[16] = {0xC0, 0xF9, 0xA4, 0xB0,
+uint8_t DIG_SEGS[19] = {0xC0, 0xF9, 0xA4, 0xB0,
     0x99, 0x92, 0x82, 0xF8,
-    0x80, 0x98, 0x88, 0x83, 0xC6, 0xA1, 0x86, 0x8E};
+    0x80, 0x98, 0x88, 0x83, 0xC6, 0xA1, 0x86, 0x8E,
+    0xC1, // U
+    0xAF, // r
+    0x87 //t
+};
 
 //the four digits to display on the four 7-seg displays
 //d[3] is the leftmost, d[0] is the rightmost
-uint8_t digits[4] = {0, 0, 0, 0};
+volatile uint8_t digits[4] = {0, 0, 0, 0};
+volatile uint8_t dp[4] = {DP_OFF, DP_OFF, DP_OFF, DP_OFF};
 
 /*******************************************************************************
  * Initialize the Seven Segment display, set all the pins as output
@@ -46,8 +52,8 @@ uint8_t digits[4] = {0, 0, 0, 0};
 void init_seven_seg() {
 
     // seven segment depends on the timer to run
-     init_T1();
-    
+    init_T1();
+
     DIG4_TRIS = TRIS_OUTPUT;
     DIG3_TRIS = TRIS_OUTPUT;
     DIG2_TRIS = TRIS_OUTPUT;
@@ -65,25 +71,26 @@ void init_seven_seg() {
 
     LED_A_ANSEL = ANSEL_DIGITAL;
     LED_B_ANSEL = ANSEL_DIGITAL;
-    LED_C_ANSEL = ANSEL_DIGITAL;
-    LED_D_ANSEL = ANSEL_DIGITAL;
+    //    LED_C_ANSEL = ANSEL_DIGITAL;
+    //    LED_D_ANSEL = ANSEL_DIGITAL;
 
-    TRISB &= ~((1 << 10)); // Set RB10 as outputs
+    //    TRISB &= ~((1 << 10)); // Set RB10 as outputs
 
     print_seven_seg(0, 0, 0, 0);
+    //    print_decimal_point(DP_OFF, DP_OFF, DP_OFF, DP_OFF);
 
     // current config doesn't have these pins on analog pins, uncomment as needed
 
-    DIG4_ANSEL = ANSEL_DIGITAL;
-    //    DIG3_ANSEL = ANSEL_DIGITAL;
-    //    DIG2_ANSEL = ANSEL_DIGITAL;
-    //    DIG1_ANSEL = ANSEL_DIGITAL;
+    //        DIG4_ANSEL = ANSEL_DIGITAL;
+    //            DIG3_ANSEL = ANSEL_DIGITAL;
+    //            DIG2_ANSEL = ANSEL_DIGITAL;
+    DIG1_ANSEL = ANSEL_DIGITAL;
 
-    //    LED_E_ANSEL = ANSEL_DIGITAL;
-    //    LED_F_ANSEL = ANSEL_DIGITAL;
-    //    LED_G_ANSEL = ANSEL_DIGITAL;
+    LED_E_ANSEL = ANSEL_DIGITAL;
+    LED_F_ANSEL = ANSEL_DIGITAL;
+    LED_G_ANSEL = ANSEL_DIGITAL;
     LED_DP_ANSEL = ANSEL_DIGITAL;
-    
+
     // enable the seven segment display in the config file
     // this line is important because it enable the refresh of the seven segment
     // in the ISR
@@ -95,6 +102,13 @@ void print_seven_seg(uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3) {
     digits[1] = d1;
     digits[2] = d2;
     digits[3] = d3;
+}
+
+void print_decimal_point(uint8_t dp0, uint8_t dp1, uint8_t dp2, uint8_t dp3) {
+    dp[0] = dp0;
+    dp[1] = dp1;
+    dp[2] = dp2;
+    dp[3] = dp3;
 }
 
 void refresh_seven_seg() {
@@ -119,31 +133,34 @@ void refresh_seven_seg() {
     LED_E = (dig_code & 0x10) >> 4;
     LED_F = (dig_code & 0x20) >> 5;
     LED_G = (dig_code & 0x40) >> 6;
+    LED_DP = dp[active_dig];
 
     //activate the anode terminal for the active digit only (active low)
     //the remaining anode terminals are to remain deactivated
     switch (active_dig) {
         case 0:
+            //            LED_DP = dp[0];
             DIG1 = ANODE_ON;
-            LED_DP = OFF;
             break;
         case 1:
+            //            LED_DP = dp[1];
             DIG2 = ANODE_ON;
-            LED_DP = ON;
             break;
         case 2:
+            //            LED_DP = dp[2];
             DIG3 = ANODE_ON;
-            LED_DP = OFF;
             break;
         case 3:
+            //            LED_DP = dp[3];
             DIG4 = ANODE_ON;
-            LED_DP = OFF;
             break;
     }
 
     //update active_dig 
     active_dig++;
     active_dig = (active_dig > 3) ? 0 : (active_dig);
+
+    //    __delay_ms(1);
 }
 
 void seven_seg_display_off() {
@@ -155,7 +172,7 @@ void seven_seg_display_off() {
     LED_E = OFF;
     LED_F = OFF;
     LED_G = OFF;
-    LED_DP = OFF;
+    LED_DP = DP_OFF;
 
     //set the anode signals to 1 (active low) to disable all displays
     DIG1 = ANODE_OFF;

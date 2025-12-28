@@ -1,13 +1,33 @@
-/*
- * File:   config.h
- * Author: Osfield
- *
- * Created on November 22, 2025, 4:06 PM
- */
+/* **************************************************************************
+*
+*  @Company
+*    Kettering University
+*
+*  @File Name
+*    config.h
+*
+*  @Summary
+*    Defines board configuration
+*
+*  @Description
+*    The macros used throughout the different drivers, as well as the period of 
+*    Timer1 is defined in this file.
+*
+*  @Author
+*    Osfield Gaga & Jeremy Gooch
+*
+*  @Created on
+*      November 22, 2025, 4:06 PM
+* 
+*  @Last modification
+*       December 09, 2025, 12:35 AM
+/* ************************************************************************** */
 
 #ifndef CONFIG_H
 #define	CONFIG_H
 #include "xc.h"
+
+#define FCY 40000000UL
 
 /******************************************************************************
  *                                  Clocks

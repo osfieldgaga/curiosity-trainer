@@ -1,0 +1,84 @@
+Microchip Technology Inc, v2.10 (B)
+
+Tool Name:
+  c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
+
+Command:
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp00002778.00 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp00002778.01 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp00002778.02 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp00002778.03 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp00002778.04 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp00002778.05 \
+  -TC:\\Users\\Osfield\\AppData\\Local\\Temp\\tmp00002778.06 \
+  -p33CK64MC105 \
+  --mdfp=C:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/dsPIC33CK-MC_DFP/1.8.299/xc16 \
+  -o \
+  dist/default/debug/CuriosityTrainer.X.debug.elf \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/.. \
+  -LC:/Program Files/Microchip/MPLABX/v6.25/packs/Microchip/dsPIC33CK-MC_DFP/1.8.299/xc16/bin/../support/dsPIC33C/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../lib \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24E/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24H/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC30F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
+  build/default/debug/config.o \
+  build/default/debug/utils.o \
+  build/default/debug/seven_segment.o \
+  build/default/debug/keypad.o \
+  build/default/debug/adc.o \
+  build/default/debug/potentiometer.o \
+  build/default/debug/photoresistor.o \
+  build/default/debug/examples.o \
+  build/default/debug/pwm.o \
+  build/default/debug/pushbuttons.o \
+  build/default/debug/led.o \
+  build/default/debug/switches.o \
+  build/default/debug/ultrasonic.o \
+  build/default/debug/sccp.o \
+  build/default/debug/main.o \
+  build/default/debug/utils.o \
+  build/default/debug/config.o \
+  build/default/debug/seven_segment.o \
+  build/default/debug/keypad.o \
+  build/default/debug/potentiometer.o \
+  build/default/debug/adc.o \
+  build/default/debug/photoresistor.o \
+  build/default/debug/pwm.o \
+  build/default/debug/examples.o \
+  build/default/debug/pushbuttons.o \
+  build/default/debug/led.o \
+  build/default/debug/switches.o \
+  build/default/debug/ultrasonic.o \
+  build/default/debug/sccp.o \
+  build/default/debug/uart.o \
+  build/default/debug/uart.o \
+  --local-stack \
+  --defsym=__MPLAB_BUILD=1 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  -Tp33CK64MC105.gld.07 \
+  --stack=16 \
+  --check-sections \
+  --data-init \
+  --pack-data \
+  --handles \
+  --isr \
+  --no-gc-sections \
+  --fill-upper=0 \
+  --stackguard=16 \
+  --no-force-link \
+  --smart-io \
+  -Map=dist/default/debug/CuriosityTrainer.X.debug.map \
+  --report-mem \
+  --memorysummary \
+  dist/default/debug/memoryfile.xml \
+  -start-group \
+  --library=c99-pic30-elf \
+  --library=m-elf \
+  --library=c99-elf \
+  -end-group \
+
