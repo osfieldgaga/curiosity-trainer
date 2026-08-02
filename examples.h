@@ -26,8 +26,10 @@ void example8();
 void example9();
 void example10();
 void example11();
- void example12();
- void example13(); 
+void example12();
+void example13();
+void example14();
+void example15();
 
 #ifdef	__cplusplus
 extern "C" {

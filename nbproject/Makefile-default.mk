@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c switches.c ultrasonic.c sccp.c uart.c neopixels.c buzzer.c oled.c sk6812.s i2c_master.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c switches.c ultrasonic.c sccp.c uart.c neopixels.c buzzer.c oled.c sk6812.s i2c_master.c io_expander.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/ultrasonic.o ${OBJECTDIR}/sccp.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/neopixels.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/oled.o ${OBJECTDIR}/sk6812.o ${OBJECTDIR}/i2c_master.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/photoresistor.o.d ${OBJECTDIR}/pwm.o.d ${OBJECTDIR}/examples.o.d ${OBJECTDIR}/pushbuttons.o.d ${OBJECTDIR}/led.o.d ${OBJECTDIR}/switches.o.d ${OBJECTDIR}/ultrasonic.o.d ${OBJECTDIR}/sccp.o.d ${OBJECTDIR}/uart.o.d ${OBJECTDIR}/neopixels.o.d ${OBJECTDIR}/buzzer.o.d ${OBJECTDIR}/oled.o.d ${OBJECTDIR}/sk6812.o.d ${OBJECTDIR}/i2c_master.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/ultrasonic.o ${OBJECTDIR}/sccp.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/neopixels.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/oled.o ${OBJECTDIR}/sk6812.o ${OBJECTDIR}/i2c_master.o ${OBJECTDIR}/io_expander.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/utils.o.d ${OBJECTDIR}/config.o.d ${OBJECTDIR}/seven_segment.o.d ${OBJECTDIR}/keypad.o.d ${OBJECTDIR}/potentiometer.o.d ${OBJECTDIR}/adc.o.d ${OBJECTDIR}/photoresistor.o.d ${OBJECTDIR}/pwm.o.d ${OBJECTDIR}/examples.o.d ${OBJECTDIR}/pushbuttons.o.d ${OBJECTDIR}/led.o.d ${OBJECTDIR}/switches.o.d ${OBJECTDIR}/ultrasonic.o.d ${OBJECTDIR}/sccp.o.d ${OBJECTDIR}/uart.o.d ${OBJECTDIR}/neopixels.o.d ${OBJECTDIR}/buzzer.o.d ${OBJECTDIR}/oled.o.d ${OBJECTDIR}/sk6812.o.d ${OBJECTDIR}/i2c_master.o.d ${OBJECTDIR}/io_expander.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/ultrasonic.o ${OBJECTDIR}/sccp.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/neopixels.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/oled.o ${OBJECTDIR}/sk6812.o ${OBJECTDIR}/i2c_master.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/utils.o ${OBJECTDIR}/config.o ${OBJECTDIR}/seven_segment.o ${OBJECTDIR}/keypad.o ${OBJECTDIR}/potentiometer.o ${OBJECTDIR}/adc.o ${OBJECTDIR}/photoresistor.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/examples.o ${OBJECTDIR}/pushbuttons.o ${OBJECTDIR}/led.o ${OBJECTDIR}/switches.o ${OBJECTDIR}/ultrasonic.o ${OBJECTDIR}/sccp.o ${OBJECTDIR}/uart.o ${OBJECTDIR}/neopixels.o ${OBJECTDIR}/buzzer.o ${OBJECTDIR}/oled.o ${OBJECTDIR}/sk6812.o ${OBJECTDIR}/i2c_master.o ${OBJECTDIR}/io_expander.o
 
 # Source Files
-SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c switches.c ultrasonic.c sccp.c uart.c neopixels.c buzzer.c oled.c sk6812.s i2c_master.c
+SOURCEFILES=main.c utils.c config.c seven_segment.c keypad.c potentiometer.c adc.c photoresistor.c pwm.c examples.c pushbuttons.c led.c switches.c ultrasonic.c sccp.c uart.c neopixels.c buzzer.c oled.c sk6812.s i2c_master.c io_expander.c
 
 
 
@@ -209,6 +209,12 @@ ${OBJECTDIR}/i2c_master.o: i2c_master.c  .generated_files/flags/default/1a4270f9
 	@${RM} ${OBJECTDIR}/i2c_master.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  i2c_master.c  -o ${OBJECTDIR}/i2c_master.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/i2c_master.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -msmall-code -msmall-data -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
+${OBJECTDIR}/io_expander.o: io_expander.c  .generated_files/flags/default/246059067830c3afddaaaab0cc950f4c79c2f0bf .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/io_expander.o.d 
+	@${RM} ${OBJECTDIR}/io_expander.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  io_expander.c  -o ${OBJECTDIR}/io_expander.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/io_expander.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -msmall-code -msmall-data -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/7588fd26100fc2909bb1c626cc3af4b2b8c8128c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
@@ -329,6 +335,12 @@ ${OBJECTDIR}/i2c_master.o: i2c_master.c  .generated_files/flags/default/354db043
 	@${RM} ${OBJECTDIR}/i2c_master.o.d 
 	@${RM} ${OBJECTDIR}/i2c_master.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  i2c_master.c  -o ${OBJECTDIR}/i2c_master.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/i2c_master.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -msmall-code -msmall-data -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/io_expander.o: io_expander.c  .generated_files/flags/default/110aa4023b8a6ac9f71270b67c9ed780adeec459 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/io_expander.o.d 
+	@${RM} ${OBJECTDIR}/io_expander.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  io_expander.c  -o ${OBJECTDIR}/io_expander.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/io_expander.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -msmall-code -msmall-data -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 

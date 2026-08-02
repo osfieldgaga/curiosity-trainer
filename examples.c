@@ -40,6 +40,7 @@
 #include "led.h"
 #include "switches.h"
 #include "buzzer.h"
+#include "io_expander.h"
 
 
 // Global variable used to enable a specific example. This controls the 
@@ -299,23 +300,23 @@ void example9() {
     running = 1;
     uint8_t on = 0;
     int on_cnt = 0;
-    
+
     turn_off_rgb();
     while (running) {
         check_for_exit();
-        
+
         if ((msCount - on_cnt) > 500) {
             on = ~on;
             on_cnt = msCount;
         }
-        
+
         if (on) {
             set_all_leds(0b10101010);
         } else {
             set_all_leds(0b01010101);
         }
 
-        
+
     }
 }
 
@@ -342,15 +343,15 @@ void example11() {
     LED_Init();
     SW_Init();
     running = 1;
-    
+
     while (running) {
         check_for_exit();
-        
+
         set_rgb(SW1, SW2, SW3);
-        __delay_ms(10);   // small delay just to avoid pegging CPU / for debounce
+        __delay_ms(10); // small delay just to avoid pegging CPU / for debounce
         check_for_exit();
 
-        
+
     }
 }
 
@@ -412,35 +413,72 @@ void example13() {
     }
 }
 
+// Example 14: IO expander Read + Display on OLED
+
+void example14() {
+
+    init_IO_expander();
+    init_oled();
+
+    io_cmd(0x03, 0xFF); // set all pins as inputs
+
+    uint8_t pins;
+    int refreshCounter = 0;
+
+    while (running) {
+
+        pins = io_read();
+
+
+        for (int i = 0; i < 8; i++) {
+            char buffer = 0;
+            buffer = (pins & (1 << i)) ? '1' : '0';
+            oled_draw_string(1, "IO Expander inputs:");
+            oled_draw_char((7 - i) * 6, 2, buffer);
+
+        }
+
+        // refresh screen at ~60Hz
+        if (msCount - refreshCounter > 16) {
+
+            refreshCounter = msCount;
+            oled_update();
+        }
+        check_for_exit();
+    }
+
+
+}
+
 
 // Example 15: Control the neopixel neopixels
 
 void example15() {
-//    init_seven_seg();
+    //    init_seven_seg();
 
     NEO_Init();
 
-//    while (1) {
-//        sendPixel(255, 0, 0);
-//        sendPixel(255, 0, 0);
-//        sendPixel(255, 0, 0);
-//        sendPixel(255, 0, 0);
-//
-//        sendPixel(0, 0, 0);
-//        show();
-        
-        clear();
-        setBrightness(255);
+    //    while (1) {
+    //        sendPixel(255, 0, 0);
+    //        sendPixel(255, 0, 0);
+    //        sendPixel(255, 0, 0);
+    //        sendPixel(255, 0, 0);
+    //
+    //        sendPixel(0, 0, 0);
+    //        show();
 
-        setPixel(0, 255, 0, 0, 0);   // LED 0 = Red
-        setPixel(1, 0, 255, 0, 0);   // LED 1 = Green
-        setPixel(2, 0, 0, 255, 0);   // LED 2 = Blue
-        setPixel(3, 0, 0, 0, 255);   // LED 3 = White
+    clear();
+    setBrightness(255);
 
-        show();
+    setPixel(0, 255, 0, 0, 0); // LED 0 = Red
+    setPixel(1, 0, 255, 0, 0); // LED 1 = Green
+    setPixel(2, 0, 0, 255, 0); // LED 2 = Blue
+    setPixel(3, 0, 0, 0, 255); // LED 3 = White
 
-        while(1);
-//    }
+    show();
+
+    while (1);
+    //    }
 }
 
 
