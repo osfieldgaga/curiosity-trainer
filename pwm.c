@@ -158,41 +158,41 @@ void PWM4_Disable(void) {
 
 }
 
-void NeoPixel_PWM4_Initialize(void) {
-
-    // first, map PWM4 to RD8
-
-    // Unlock PPS registers 
-    __builtin_write_RPCON(0x0000);
-
-    RPOR4bits.RP41R = PWM4L_OFC;
-
-    // Lock PPS registers
-    __builtin_write_RPCON(0x0800);
-
-    // Configure RD8 as a Digital Output (0 = Output)
-    TRISDbits.TRISD8 = 0;
-
-    // then setup the pWM module
-
-    // Reset control registers for a clean start
-    PG4CONL = 0x0000;
-    PG4CONH = 0x0000;
-    PG4IOCONH = 0x0000;
-
-    // Control Setup
-    PG4CONLbits.CLKSEL = 0b01; // CLKSEL: Select Primary Clock (Fp)
-    PG4CONLbits.MODSEL = 0b000; // MODSEL: Independent Edge PWM Mode
-    PG4CONHbits.MDCSEL = 0; // MDCS: Use PG4DC register for duty cycle value
-
-    //Output Pin Enable
-    PG4IOCONHbits.PENL = 1; // PENL: Enable PWM4L (Low-side) output pin
-
-    //Period and Duty Cycle Setting
-    PG4PER = freq_to_pgxper(4000); 
-    PG4DC = PG4PER / 2;
-
-    // --- Enable PWM ---
-    PG4CONLbits.ON = 1; // Turn ON PWM Generator 4
-}
+//void NeoPixel_PWM4_Initialize(void) {
+//
+//    // first, map PWM4 to RD8
+//
+//    // Unlock PPS registers 
+//    __builtin_write_RPCON(0x0000);
+//
+//    RPOR4bits.RP41R = PWM4L_OFC;
+//
+//    // Lock PPS registers
+//    __builtin_write_RPCON(0x0800);
+//
+//    // Configure RD8 as a Digital Output (0 = Output)
+//    TRISDbits.TRISD8 = 0;
+//
+//    // then setup the pWM module
+//
+//    // Reset control registers for a clean start
+//    PG4CONL = 0x0000;
+//    PG4CONH = 0x0000;
+//    PG4IOCONH = 0x0000;
+//
+//    // Control Setup
+//    PG4CONLbits.CLKSEL = 0b01; // CLKSEL: Select Primary Clock (Fp)
+//    PG4CONLbits.MODSEL = 0b000; // MODSEL: Independent Edge PWM Mode
+//    PG4CONHbits.MDCSEL = 0; // MDCS: Use PG4DC register for duty cycle value
+//
+//    //Output Pin Enable
+//    PG4IOCONHbits.PENL = 1; // PENL: Enable PWM4L (Low-side) output pin
+//
+//    //Period and Duty Cycle Setting
+//    PG4PER = freq_to_pgxper(4000); 
+//    PG4DC = PG4PER / 2;
+//
+//    // --- Enable PWM ---
+//    PG4CONLbits.ON = 1; // Turn ON PWM Generator 4
+//}
 

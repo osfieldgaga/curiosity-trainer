@@ -105,12 +105,16 @@ void print_decimal_point(uint8_t dp0, uint8_t dp1, uint8_t dp2, uint8_t dp3);
 
 
 
-#define DIG4_TRIS TRISDbits.TRISD1 //
+//#define DIG4_TRIS TRISDbits.TRISD1 // V1
+#define DIG4_TRIS TRISBbits.TRISB13
+
 #define DIG3_TRIS TRISDbits.TRISD8 //
 #define DIG2_TRIS TRISBbits.TRISB10 //
 #define DIG1_TRIS TRISBbits.TRISB9 //
 
-#define DIG4 LATDbits.LATD1 //
+//#define DIG4 LATDbits.LATD1 //
+#define DIG4 LATBbits.LATB13
+
 #define DIG3 LATDbits.LATD8 //
 #define DIG2 LATBbits.LATB10 //
 #define DIG1 LATBbits.LATB9 //

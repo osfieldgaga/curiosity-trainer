@@ -42,8 +42,11 @@
 #define BTN_L PORTBbits.RB15
 #define BTN_L_TRIS TRISBbits.TRISB15
 
-#define BTN_R PORTBbits.RB13
-#define BTN_R_TRIS TRISBbits.TRISB13
+//#define BTN_R PORTBbits.RB13
+//#define BTN_R_TRIS TRISBbits.TRISB13
+
+#define BTN_R PORTDbits.RD1
+#define BTN_R_TRIS TRISDbits.TRISD1
 
 void BTN_Center_Init();
 void BTN_Init();

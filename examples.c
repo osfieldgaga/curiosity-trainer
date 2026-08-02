@@ -297,17 +297,25 @@ void example9() {
     LED_Init();
 
     running = 1;
+    uint8_t on = 0;
+    int on_cnt = 0;
+    
     turn_off_rgb();
     while (running) {
-
-
-        set_all_leds(0b10101010);
-        __delay_ms(500);
-
-        set_all_leds(0b01010101);
-        __delay_ms(500);
-
         check_for_exit();
+        
+        if ((msCount - on_cnt) > 500) {
+            on = ~on;
+            on_cnt = msCount;
+        }
+        
+        if (on) {
+            set_all_leds(0b10101010);
+        } else {
+            set_all_leds(0b01010101);
+        }
+
+        
     }
 }
 
@@ -334,16 +342,15 @@ void example11() {
     LED_Init();
     SW_Init();
     running = 1;
+    
     while (running) {
-
-        set_rgb(1, 0, 0);
-        __delay_ms(500);
-        set_rgb(0, 1, 0);
-        __delay_ms(500);
-        set_rgb(0, 0, 1);
-        __delay_ms(500);
-
         check_for_exit();
+        
+        set_rgb(SW1, SW2, SW3);
+        __delay_ms(10);   // small delay just to avoid pegging CPU / for debounce
+        check_for_exit();
+
+        
     }
 }
 
@@ -377,7 +384,7 @@ void example13() {
 
 
     char buffer[20] = {0};
-    //    UartInit();
+    UartInit();
     __delay_ms(100);
     UartSendString("\r\n");
     UartSendString("\r\n --------------------- \r\n");
@@ -409,19 +416,31 @@ void example13() {
 // Example 15: Control the neopixel neopixels
 
 void example15() {
-    init_seven_seg();
+//    init_seven_seg();
 
     NEO_Init();
 
-    while (1) {
-        sendPixel(255, 0, 0);
-        sendPixel(255, 0, 0);
-        sendPixel(255, 0, 0);
-        sendPixel(255, 0, 0);
+//    while (1) {
+//        sendPixel(255, 0, 0);
+//        sendPixel(255, 0, 0);
+//        sendPixel(255, 0, 0);
+//        sendPixel(255, 0, 0);
+//
+//        sendPixel(0, 0, 0);
+//        show();
+        
+        clear();
+        setBrightness(255);
 
-        sendPixel(0, 0, 0);
+        setPixel(0, 255, 0, 0, 0);   // LED 0 = Red
+        setPixel(1, 0, 255, 0, 0);   // LED 1 = Green
+        setPixel(2, 0, 0, 255, 0);   // LED 2 = Blue
+        setPixel(3, 0, 0, 0, 255);   // LED 3 = White
+
         show();
-    }
+
+        while(1);
+//    }
 }
 
 

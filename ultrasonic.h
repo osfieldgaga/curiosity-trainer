@@ -39,6 +39,7 @@
 #define TRIGGER_ANSEL ANSELBbits.ANSELB7
 #define ECHO_ANSEL ANSELBbits.ANSELB8
 
+void init_ultrasonic();
 int sense_distance ();
 
 #ifdef	__cplusplus

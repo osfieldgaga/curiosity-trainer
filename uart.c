@@ -21,7 +21,7 @@ void UartInit(void)
     U1MODEH = 0;    
     U1STA = 0;
     U1STAH = 0;
-    U1BRG = 25;  // 9600 @ Fosc 200MHz
+    U1BRG = 25; 
 
     U1STAHbits.URXISEL = 6;
     U1MODEHbits.BCLKSEL = 0;

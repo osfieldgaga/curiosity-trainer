@@ -60,10 +60,16 @@
 // FOSC
 #pragma config POSCMD = NONE            // Primary Oscillator Mode Select bits (Primary Oscillator disabled)
 #pragma config OSCIOFNC = OFF           // OSC2 Pin Function bit (OSC2 is clock output)
-#pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
+//#pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
 #pragma config PLLKEN = ON              // PLL Lock Enable (PLL clock output will be disabled if LOCK is lost)
 #pragma config XTCFG = G3               // XT Config (24-32 MHz crystals)
 #pragma config XTBST = ENABLE           // XT Boost (Boost the kick-start)
+
+
+// TEMP
+// Enable Clock Switching, Disable Clock Monitor
+#pragma config FCKSM = CSECMD   
+
 
 // FWDT
 #pragma config RWDTPS = PS2147483648    // Run Mode Watchdog Timer Post Scaler select bits (1:2147483648)
@@ -77,7 +83,7 @@
 #pragma config BISTDIS = DISABLED       // Memory BIST Feature Disable (mBIST on reset feature disabled)
 
 // FICD
-#pragma config ICS = PGD1               // ICD Communication Channel Select bits (Communicate on PGC1 and PGD1)
+#pragma config ICS = PGD3               // ICD Communication Channel Select bits (Communicate on PGC1 and PGD1)
 #pragma config JTAGEN = OFF             // JTAG Enable bit (JTAG is disabled)
 
 // FDMTIVTL
@@ -167,7 +173,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
 void init_T1() {
 
     TMR1 = 0;
-    PR1 = T1_PERIOD; // 1ms
+    PR1 = T1_PERIOD; // 1ms 
 
     T1CONbits.TCKPS = 0x01; //1:8 prescaler
 

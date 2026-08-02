@@ -142,27 +142,9 @@ void set_all_leds(uint8_t state) {
 }
 
 void set_rgb(uint8_t r, uint8_t g, uint8_t b) {
-    void turn_off_rgb();
-        __delay_ms(20);
-
-    if (r) {
-        RGB_R = RGB_ON;
-        RGB_G = RGB_OFF;
-        RGB_B = RGB_OFF;
-    }
-
-    if (g) {
-        RGB_R = RGB_OFF;
-        RGB_G = RGB_ON;
-        RGB_B = RGB_OFF;
-    }
-
-    if (b) {
-        RGB_R = RGB_OFF;
-        RGB_G = RGB_ON;
-        RGB_B = RGB_ON;
-    }
-
+    RGB_R = r ? RGB_ON : RGB_OFF;
+    RGB_G = g ? RGB_ON : RGB_OFF;
+    RGB_B = b ? RGB_ON : RGB_OFF;
 }
 
 void turn_off_rgb() {

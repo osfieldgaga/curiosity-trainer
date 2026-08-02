@@ -21,11 +21,15 @@
       <itemPath>uart.h</itemPath>
       <itemPath>neopixels.h</itemPath>
       <itemPath>buzzer.h</itemPath>
+      <itemPath>sk6812.h</itemPath>
+      <itemPath>oled.h</itemPath>
+      <itemPath>i2c_master.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="true">
       <itemPath>Makefile</itemPath>
+      <itemPath>CuriosityTrainer.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -52,6 +56,9 @@
       <itemPath>uart.c</itemPath>
       <itemPath>neopixels.c</itemPath>
       <itemPath>buzzer.c</itemPath>
+      <itemPath>oled.c</itemPath>
+      <itemPath>sk6812.s</itemPath>
+      <itemPath>i2c_master.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -71,7 +78,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="dsPIC33CK-MC_DFP" vendor="Microchip" version="1.8.299"/>
+        <pack name="dsPIC33CK-MC_DFP" vendor="Microchip" version="1.10.386"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -102,9 +109,9 @@
       </makeCustomizationType>
       <C30>
         <property key="cast-align" value="false"/>
-        <property key="code-model" value="default"/>
+        <property key="code-model" value="small-code"/>
         <property key="const-model" value="default"/>
-        <property key="data-model" value="default"/>
+        <property key="data-model" value="small-data"/>
         <property key="disable-instruction-scheduling" value="false"/>
         <property key="enable-all-warnings" value="true"/>
         <property key="enable-ansi-std" value="false"/>
@@ -239,8 +246,10 @@
         <property key="CLC 4" value="true"/>
         <property key="CRC" value="true"/>
         <property key="DAC" value="true"/>
+        <property key="DACFRZ" value="true"/>
         <property key="DCO" value="true"/>
         <property key="DMA" value="true"/>
+        <property key="FRZ" value="true"/>
         <property key="Freeze All Other Peripherals" value="true"/>
         <property key="GPIOA" value="true"/>
         <property key="GPIOB" value="true"/>
@@ -256,6 +265,7 @@
         <property key="PG3" value="true"/>
         <property key="PG4" value="true"/>
         <property key="PTG" value="true"/>
+        <property key="PTGFRZ" value="true"/>
         <property key="QEI1" value="true"/>
         <property key="REFO" value="true"/>
         <property key="SENT1" value="true"/>
@@ -310,8 +320,7 @@
         <property key="programoptions.programuserotp" value="false"/>
         <property key="toolpack.updateoptions"
                   value="toolpack.updateoptions.uselatestoolpack"/>
-        <property key="toolpack.updateoptions.packversion"
-                  value="Press to select which tool pack to use"/>
+        <property key="toolpack.updateoptions.packversion" value="1.11.554"/>
         <property key="voltagevalue" value=""/>
       </Tool>
       <nEdbgTool>
@@ -356,16 +365,12 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="event.recorder.debugger.behavior" value="Running"/>
-        <property key="event.recorder.enabled" value="false"/>
-        <property key="event.recorder.scvd.files" value=""/>
         <property key="firmware.path"
                   value="Press to browse for a specific firmware version"/>
         <property key="firmware.toolpack"
                   value="Press to select which tool pack to use"/>
         <property key="firmware.update.action" value="firmware.update.use.latest"/>
         <property key="freeze.timers" value="false"/>
-        <property key="lastid" value=""/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -392,10 +397,23 @@
         <property key="programoptions.programuserotp" value="false"/>
         <property key="toolpack.updateoptions"
                   value="toolpack.updateoptions.uselatestoolpack"/>
-        <property key="toolpack.updateoptions.packversion"
-                  value="Press to select which tool pack to use"/>
+        <property key="toolpack.updateoptions.packversion" value="1.11.554"/>
         <property key="voltagevalue" value=""/>
       </nEdbgTool>
+      <item path="oled.c" ex="false" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-CO>
+        </C30-CO>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>

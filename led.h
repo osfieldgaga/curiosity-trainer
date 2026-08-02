@@ -44,7 +44,9 @@
 
 #define RGB_R LATBbits.LATB10
 #define RGB_G LATDbits.LATD8
-#define RGB_B LATDbits.LATD1
+
+//#define RGB_B LATDbits.LATD1 Old working V1
+#define RGB_B LATBbits.LATB13
 
 
 
@@ -61,7 +63,9 @@
 
 #define RGB_R_TRIS TRISBbits.TRISB10
 #define RGB_G_TRIS TRISDbits.TRISD8
-#define RGB_B_TRIS TRISDbits.TRISD1
+
+//#define RGB_B_TRIS TRISDbits.TRISD1 // V1
+#define RGB_B_TRIS TRISBbits.TRISB13
 
 
 
@@ -78,7 +82,10 @@
 
 #define RGB_R_ANSEL ANSELBbits.ANSELB10
 #define RGB_G_ANSEL ANSELDbits.ANSELD8
-#define RGB_B_ANSEL ANSELDbits.ANSELD1
+
+//#define RGB_B_ANSEL ANSELDbits.ANSELD1 // V1
+#define RGB_B_ANSEL ANSELBbits.ANSELB13
+
 
 
 #define LED_ON 0
