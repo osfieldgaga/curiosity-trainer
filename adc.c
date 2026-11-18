@@ -46,7 +46,7 @@
  * 
  * ADSTATLbits.AN9RDY = 0; 
  */
-int ADC_Init(void) {
+void ADC_Init(void) {
 
     ADCON1Lbits.ADON = 0; // turn off everything before setting up
 

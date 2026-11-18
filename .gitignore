@@ -3,3 +3,29 @@ build/
 
 # Ignore the 'dist' folder and everything within it
 dist/
+.generated_files/
+nbproject/
+Makefile*
+Package-*
+private/
+_build/
+!cmake/**/user.cmake
+cmake/**/.generated/*
+cmake/**/CMake*
+out/
+
+# Debugger logs
+debug/
+queuelogs/
+
+# MPLAB X files specific to each computer
+nbproject/private/
+nbproject/tmp/
+
+# VS Code files specific to each computer and board (tool serial number), old backup
+.vscode/*.mplab-local.json
+.vscode/_launch.json
+
+# Office lock files (a document open in LibreOffice/Word)
+.~lock.*#
+~$*

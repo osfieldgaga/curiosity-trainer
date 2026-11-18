@@ -4,7 +4,7 @@
  *    Kettering University
  *
  *  @File Name
- *    led.h
+ *    photoresistor.h
  *
  *  @Summary
  *    Defines function prototypes for the photoresistor
@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 09, 2025, 5:22 PM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  

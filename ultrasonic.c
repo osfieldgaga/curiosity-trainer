@@ -28,8 +28,15 @@ void init_ultrasonic() {
 
 int sense_distance() {
 
-    int t1, t2, ticks;
-    float pulseWidth_us, distance;
+    uint16_t t1, t2, ticks;
+    float distance;
+
+    // discard any capture left over from a previous measurement or noise, so
+    // the next two captures are the rising and falling edges of this echo
+    while (CCP1STATLbits.ICBNE) {
+        (void) CCP1BUFL;
+    }
+    CCP1STATLbits.ICOV = 0;
 
     // send trigger
     TRIGGER = 1;
@@ -38,20 +45,28 @@ int sense_distance() {
 
     __delay_ms(50);
 
+    // rising edge of the echo, none means no echo (sensor not connected)
+    if (!CCP1STATLbits.ICBNE) {
+        return 7777;
+    }
     t1 = CCP1BUFL;
+
+    // falling edge of the echo
+    if (!CCP1STATLbits.ICBNE) {
+        return 8888;
+    }
     t2 = CCP1BUFL;
 
+    // the timer runs at 1 MHz (see SCCP_Init()), so ticks are in us. The
+    // unsigned subtraction stays correct if the timer wrapped between the edges
     ticks = t2 - t1;
 
-    pulseWidth_us = ticks * 0.25f;
-
     // according to the datasheet, 150 us is the minimum pulse width
-    if (pulseWidth_us < 150) {
-        distance = 0;
+    if (ticks < 150) {
+        distance = 9999;
     } else {
-        distance = pulseWidth_us / 58.0f;
+        distance = ticks / 58.0f; // 58 us per cm, round trip
     }
-
 
     return distance;
 }

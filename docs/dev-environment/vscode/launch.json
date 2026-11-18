@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch CuriosityTrainer: default",
+            "type": "mplab-core-da",
+            "request": "launch",
+            "project": "CuriosityTrainer",
+            "configuration": "default",
+            "stopOnEntry": true,
+            "preLaunchTask": "CuriosityTrainer: default - Build",
+            "program": "${workspaceFolder}/out/CuriosityTrainer/default.elf"
+        },
+        {
+            "name": "Program CuriosityTrainer: default - Production",
+            "type": "mplab-core-da",
+            "request": "launch",
+            "project": "CuriosityTrainer",
+            "configuration": "default",
+            "noDebug": true,
+            "preLaunchTask": "CuriosityTrainer: default - Build (Production)",
+            "program": "${workspaceFolder}/out/CuriosityTrainer/production/default-production.hex"
+        }
+    ]
+}

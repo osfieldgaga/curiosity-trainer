@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 09, 2025, 5:25 PM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -94,6 +94,10 @@
 #define DP_ON 0
 #define DP_OFF 1
 
+
+// special characters, use them as digits in print_seven_seg()
+#define SEG_DASH 19 // middle segment only
+#define SEG_BLANK 20 // all segments off
 
 void init_seven_seg();
 void print_seven_seg(uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3);

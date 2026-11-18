@@ -4,7 +4,7 @@
  *    Kettering University
  *
  *  @File Name
- *    sccp.h
+ *    ultrasonic.h
  *
  *  @Summary
  *    Defines function prototypes for the ultrasonic proximity sensor
@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 10, 2025, 9:22 PM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  

@@ -21,7 +21,7 @@
 * 
 *  @Last modification
 *       December 08, 2025, 11:50 PM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -33,7 +33,7 @@
 #include <libpic30.h>
 
 
-int ADC_Init(void);
+void ADC_Init(void);
 int ADC_Core_Read();
 void ADC_Set_AN9();
 

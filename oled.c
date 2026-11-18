@@ -24,13 +24,20 @@
  *  @Last modification
  *      December 09, 2025, 12:17 PM
  */
-#define FCY 4000000UL
 #include "xc.h"
+#include "config.h" // FCY, must come before libpic30.h
 #include "i2c_master.h"
 #include "stdint.h"
 #include <libpic30.h>
 #include <math.h>
+#include <stdlib.h> // abs()
+#include <string.h> // memcpy()
 #include "oled.h"
+
+// frame buffer: 128 x 64 pixels, 1 bit per pixel, sent by oled_update().
+// Defined here only: a definition in oled.h gave every file including it its
+// own unused 1 KB copy, filling the 4 KB of near data memory
+static uint8_t fb[1024];
 
 void init_oled(void) {
     
@@ -178,6 +185,12 @@ void oled_clear_line(uint8_t page) {
     while (x < 128) {
         oled_draw_char(x, page, 32); // 32 is space or just nothing
         x += 6;  // 5 pixels wide + 1 gap
+    }
+}
+
+void oled_clear() {
+    for (int i = 0; i < 8; i++) {
+        oled_clear_line(i);
     }
 }
 

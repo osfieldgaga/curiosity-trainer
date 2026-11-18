@@ -21,21 +21,24 @@
 * 
 *  @Last modification
 *       December 09, 2025, 12:35 AM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 #ifndef CONFIG_H
 #define	CONFIG_H
 #include "xc.h"
 
-#define FCY 40000000UL
+// Instruction clock: FRC (8 MHz) + PLL set up in main.c gives Fpllo = 64 MHz,
+// Fosc = Fpllo / 2 = 32 MHz and Fcy = Fp = Fosc / 2 = 16 MHz. The neopixels bit
+// timing (Nop() counts in neopixels.h) is tuned for this clock, so keep it.
+// FCY is used by __delay_ms(), __delay_us() and to compute the UART baud rate
+#define FCY 16000000UL
 
 /******************************************************************************
  *                                  Clocks
  * 
  ******************************************************************************/
 
-#define CPU_FREQ 8000000 // using FRC by default
-#define FP CPU_FREQ / 2
+#define FOSC 32000000UL // FRC + PLL (main.c), also clocks the PWM module
 
 /******************************************************************************
  *                     Timer 1 Default configuration
@@ -43,10 +46,14 @@
  ******************************************************************************/
 
 #define T1_TIME_MS 1000 // tFlag period 
-#define T1_PERIOD 500 // corresponds to 1 ms at Fosc = 8Mhz, and Fpb = Fosc/2
+#define T1_PERIOD 1999 // 1 ms at Fp = 16 MHz (FRC + PLL set up in main.c) with the 1:8 prescaler
 
-extern uint16_t msCount; // incremented every 1ms, reset once equals to T1_TIME_MS
-extern uint8_t tFlag; // flag set every T1_TIME_MS ms, must be explicitely reset by the user
+// a center button press must be stable for this long before it ends the example
+#define BTN_DEBOUNCE_MS 20
+
+extern volatile uint16_t msCount; // incremented every 1ms, reset once equals to T1_TIME_MS
+extern volatile uint8_t tFlag; // flag set every T1_TIME_MS ms, must be explicitely reset by the user
+extern volatile uint16_t msTicks; // incremented every 1ms, never reset (wraps at 65535)
 void init_T1(); // sets up timer 1, enables T1 and interrupts
 
 /******************************************************************************

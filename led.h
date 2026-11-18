@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 09, 2025, 11:35 AM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 
 // This is a guard condition so that contents of this file are not included
@@ -94,6 +94,7 @@
 #define RGB_ON 1
 #define RGB_OFF 0
 
+void LED_Init(void);
 void turn_off_leds();
 void set_led_state(uint8_t index, uint8_t state);
 void set_rgb(uint8_t r, uint8_t g, uint8_t b);

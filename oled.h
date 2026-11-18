@@ -4,14 +4,15 @@
 *    Kettering University
 *
 *  @File Name
-*    adc.h
+*    oled.h
 *
 *  @Summary
-*    Defines function prototypes for the ADC Core module
+*    Driver for the 128 x 64 OLED display (SSD1306BZ controller, I2C 0x3C)
 *
 *  @Description
-*    The functions used for interfacing the ADC Core and the function prototypes
-*    are defined in this header file.
+*    The functions draw into a 1 KB frame buffer in RAM, oled_update() sends it
+*    to the display over the software I2C bus (i2c_master.c/h). This header
+*    also holds the 5 x 8 font and the bulldog bitmaps used by example 0.
 *
 *  @Author
 *    Osfield Gaga & Jeremy Gooch
@@ -33,7 +34,6 @@
 #include <stdint.h>
 #include <libpic30.h>
 
-static uint8_t fb[1024];
 
 
 void init_oled(void);
@@ -47,6 +47,7 @@ void oled_draw_char(uint8_t x, uint8_t page, char c);
 void oled_draw_string(uint8_t page, const char *str);
 void oled_draw_bitmap(const uint8_t *bmp);
 void oled_clear_line(uint8_t page);
+void oled_clear();
 
 static const uint8_t bulldog[1024] = {
     // 'Bulldog fullscreen', 128x64px

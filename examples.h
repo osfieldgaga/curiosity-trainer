@@ -14,7 +14,10 @@
 
 extern volatile uint8_t running; // Global variable
 
+void check_for_exit();
+uint8_t delay_ms_or_exit(uint16_t ms); // delay that ends early when the example is exited
 
+void example0();
 void example1();
 void example2();
 void example3();
@@ -30,6 +33,8 @@ void example12();
 void example13();
 void example14();
 void example15();
+void example16();
+void example17();
 
 #ifdef	__cplusplus
 extern "C" {

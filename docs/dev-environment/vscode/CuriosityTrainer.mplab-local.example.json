@@ -1,0 +1,8 @@
+{
+    "configurations": [
+        {
+            "reference": "default",
+            "toolSerial": "<your board's serial number, filled in by the extension>"
+        }
+    ]
+}

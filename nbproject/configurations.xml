@@ -25,6 +25,8 @@
       <itemPath>oled.h</itemPath>
       <itemPath>i2c_master.h</itemPath>
       <itemPath>io_expander.h</itemPath>
+      <itemPath>accelerometer.h</itemPath>
+      <itemPath>mic.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -61,6 +63,8 @@
       <itemPath>sk6812.s</itemPath>
       <itemPath>i2c_master.c</itemPath>
       <itemPath>io_expander.c</itemPath>
+      <itemPath>accelerometer.c</itemPath>
+      <itemPath>mic.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -80,7 +84,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="dsPIC33CK-MC_DFP" vendor="Microchip" version="1.10.386"/>
+        <pack name="dsPIC33CK-MC_DFP" vendor="Microchip" version="1.5.126"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>

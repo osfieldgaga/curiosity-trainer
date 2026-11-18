@@ -27,6 +27,8 @@
 #include "examples.h"
 
 #include <stdint.h>
+#include <stdio.h>
+#include <math.h>
 
 #include "xc.h"
 #include "config.h"
@@ -41,6 +43,12 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "io_expander.h"
+#include "oled.h"
+#include "accelerometer.h"
+#include "mic.h"
+#include "ultrasonic.h"
+#include "neopixels.h"
+#include "uart.h"
 
 
 // Global variable used to enable a specific example. This controls the 
@@ -65,17 +73,60 @@ volatile uint8_t running = 1;
 
 
 
-// Here is the exit condition for the while loop. By default, it is set to detect
-// a Center pushbutton press
+// The exit condition for the while loops is now handled by the T1 ISR (config.c):
+// a center pushbutton press clears "running", even if the example is busy in a
+// delay. check_for_exit() is kept so the existing examples still compile, it
+// no longer needs to do anything
 
 void check_for_exit() {
-    if (read_center_btn() == 0) {
-        while (read_center_btn() == 0); // Wait for release
-        running = 0; // This will break the while loops in your examples
-    }
+}
+
+// Wait for ms milliseconds, or less if the center button ends the example.
+// Use it instead of __delay_ms() for long delays in the examples, so they exit
+// right away. Returns 0 if the example should stop, 1 otherwise
+
+uint8_t delay_ms_or_exit(uint16_t ms) {
+    uint16_t start = msTicks;
+
+    // the cast keeps the subtraction correct when msTicks wraps around
+    while (running && (uint16_t) (msTicks - start) < ms);
+
+    return running;
 }
 
 // Example 1: Read keypad input and display it on the 7 segment display
+
+void example0() {
+    uint16_t refreshCounter = 0;
+    char onlineBanner[32];
+    uint8_t uptime_s = 0, uptime_m = 0, uptime_h = 0, uptime = 0;
+    running = 1;
+    while (running) {
+
+        check_for_exit();
+
+        if (tFlag) { //tFlag set to 1 second by default
+            uptime++;
+            tFlag = 0;
+        }
+
+        uptime_s = uptime % 60;
+        uptime_m = uptime / 60;
+        uptime_h = uptime_m / 60;
+
+        oled_draw_bitmap(bulldog2);
+        sprintf(onlineBanner, "Up: %dh %dm %ds", uptime_h, uptime_m, uptime_s);
+        oled_draw_string(7, onlineBanner);
+        // refresh the screen at most every 16 ms. oled_update() itself takes
+        // ~79 ms (measured), so the screen is refreshed ~12 times per second
+        if ((uint16_t) (msTicks - refreshCounter) > 16) {
+
+            refreshCounter = msTicks;
+            oled_update();
+        }
+
+    }
+}
 
 void example1() {
 
@@ -83,20 +134,46 @@ void example1() {
     init_keypad();
 
     unsigned char c = 0, key_in;
+    uint8_t warned = 0;
     running = 1;
     while (running) {
 
-        key_in = readKey(KEYPAD_OUTPUT_CHAR);
-
-        if (c != key_in && key_in != 0) {
-            if (key_in - '0' < 10) {
-                c = key_in - '0';
-            } else {
-                c = key_in - 'A' + 10;
+        // the slide switches share the row pins, if any of them is on the
+        // keys can't be read reliably, so warn the user and ignore the keypad
+        if (keypad_check_rows()) {
+            if (!warned) {
+                oled_draw_string(4, "Keypad blocked!");
+                oled_draw_string(5, "Set SW0-SW3 low");
+                oled_update();
+                warned = 1;
             }
-        }
+            key_in = 0;
 
-        print_seven_seg(0, 0, 0, c);
+            // flash "----" at 1 Hz, msCount goes from 0 to 999 every second
+            if (msCount < 500) {
+                print_seven_seg(SEG_DASH, SEG_DASH, SEG_DASH, SEG_DASH);
+            } else {
+                print_seven_seg(SEG_BLANK, SEG_BLANK, SEG_BLANK, SEG_BLANK);
+            }
+        } else {
+            if (warned) {
+                oled_clear_line(4);
+                oled_clear_line(5);
+                oled_update();
+                warned = 0;
+            }
+            key_in = readKey(KEYPAD_OUTPUT_CHAR);
+
+            if (c != key_in && key_in != 0) {
+                if (key_in - '0' < 10) {
+                    c = key_in - '0';
+                } else {
+                    c = key_in - 'A' + 10;
+                }
+            }
+
+            print_seven_seg(0, 0, 0, c);
+        }
 
         check_for_exit();
     }
@@ -299,15 +376,15 @@ void example9() {
 
     running = 1;
     uint8_t on = 0;
-    int on_cnt = 0;
+    uint16_t on_cnt = 0;
 
     turn_off_rgb();
     while (running) {
         check_for_exit();
 
-        if ((msCount - on_cnt) > 500) {
+        if ((uint16_t) (msTicks - on_cnt) > 500) {
             on = ~on;
-            on_cnt = msCount;
+            on_cnt = msTicks;
         }
 
         if (on) {
@@ -369,7 +446,7 @@ void example12() {
         UartSendString("Hello World!!");
         UartSendString("\r\n");
 
-        __delay_ms(2000);
+        delay_ms_or_exit(2000);
 
         check_for_exit();
     }
@@ -417,13 +494,16 @@ void example13() {
 
 void example14() {
 
-    init_IO_expander();
     init_oled();
 
-    io_cmd(0x03, 0xFF); // set all pins as inputs
+    // all 8 pins are inputs after init_IO_expander()
+    if (!init_IO_expander()) {
+        oled_draw_string(6, "TCA9534 not found");
+        oled_update();
+    }
 
     uint8_t pins;
-    int refreshCounter = 0;
+    uint16_t refreshCounter = 0;
 
     while (running) {
 
@@ -438,10 +518,11 @@ void example14() {
 
         }
 
-        // refresh screen at ~60Hz
-        if (msCount - refreshCounter > 16) {
+        // refresh the screen at most every 16 ms. oled_update() itself takes
+        // ~79 ms (measured), so the screen is refreshed ~12 times per second
+        if ((uint16_t) (msTicks - refreshCounter) > 16) {
 
-            refreshCounter = msCount;
+            refreshCounter = msTicks;
             oled_update();
         }
         check_for_exit();
@@ -458,29 +539,136 @@ void example15() {
 
     NEO_Init();
 
-    //    while (1) {
-    //        sendPixel(255, 0, 0);
-    //        sendPixel(255, 0, 0);
-    //        sendPixel(255, 0, 0);
-    //        sendPixel(255, 0, 0);
-    //
-    //        sendPixel(0, 0, 0);
-    //        show();
+    sendRGBMultiple(0, 0, 0, 255, 4);
+    __delay_ms(100);
+    delay_ms_or_exit(1000);
 
-    clear();
-    setBrightness(255);
+    while (running) {
+        //Step 1: Perform the pattern (turn on the first 6 LEDs)
+        performPattern(255, 206, 2, 0, 4);
+        // Delay to reset
+        __delay32(640);
+        // Step 2: Turn off the first LEDs
+        //                    sendRGBMultiple(0, 0, 0, 0, 4);
+        delay_ms_or_exit(500);
 
-    setPixel(0, 255, 0, 0, 0); // LED 0 = Red
-    setPixel(1, 0, 255, 0, 0); // LED 1 = Green
-    setPixel(2, 0, 0, 255, 0); // LED 2 = Blue
-    setPixel(3, 0, 0, 0, 255); // LED 3 = White
+        performPattern(35, 75, 153, 0, 4);
+        // Delay to reset
+        __delay32(640);
+        // Step 2: Turn off the first LEDs
+        //                    sendRGBMultiple(0, 0, 0, 0, 4);
+        delay_ms_or_exit(500);
 
-    show();
+        performPattern(81, 202, 245, 0, 4);
+        // Delay to reset
+        __delay32(640);
+        // Step 2: Turn off the first LEDs
+        //                    sendRGBMultiple(0, 0, 0, 0, 4);
+        delay_ms_or_exit(500);
+        
+        check_for_exit();
 
-    while (1);
-    //    }
+    }
+    
+    // turn off before moving on
+    sendRGBMultiple(0, 0, 0, 0, 4); 
 }
 
 
+// Example 16: Accelerometer (MMA8451) Read + Display on OLED
 
+#define RAD_TO_DEG 57.29578f
 
+void example16() {
+
+    accel_data_t accel;
+    char buffer[22]; // 21 characters per line on the OLED
+    uint16_t refreshCounter = 0;
+    float pitch, roll;
+
+    init_oled();
+
+    if (!init_accelerometer()) {
+        oled_draw_string(6, "MMA8451 not found");
+        oled_update();
+    }
+
+    while (running) {
+
+        accel_read(&accel);
+
+        // tilt angles from the direction of gravity, in degrees
+        // pitch: rotation around Y, roll: rotation around X
+        pitch = atan2f(-accel.x, sqrtf((float) accel.y * accel.y + (float) accel.z * accel.z)) * RAD_TO_DEG;
+        roll = atan2f(accel.y, accel.z) * RAD_TO_DEG;
+
+        // fixed width so shorter values overwrite longer ones
+        sprintf(buffer, "X:%5d Y:%5d mg", accel_to_mg(accel.x), accel_to_mg(accel.y));
+        oled_draw_string(1, buffer);
+        sprintf(buffer, "Z:%5d mg", accel_to_mg(accel.z));
+        oled_draw_string(2, buffer);
+        sprintf(buffer, "Pitch: %4d deg", (int) pitch);
+        oled_draw_string(4, buffer);
+        sprintf(buffer, "Roll:  %4d deg", (int) roll);
+        oled_draw_string(5, buffer);
+
+        // refresh the screen at most every 16 ms. oled_update() itself takes
+        // ~79 ms (measured), so the screen is refreshed ~12 times per second
+        if ((uint16_t) (msTicks - refreshCounter) > 16) {
+
+            refreshCounter = msTicks;
+            oled_update();
+        }
+        check_for_exit();
+    }
+}
+
+// Example 17: Capture microphone frames and stream them over UART
+// Run tools/mic_viewer.py (Python) or tools/mic_viewer.m (MATLAB) on the
+// computer to plot the waveform and its spectrum. The selector switch must be
+// set to the microphone (RB8 is shared with the ultrasonic echo)
+
+void example17() {
+
+    // static: 1 KB is large for the stack, far: keeps the 4 KB of near data
+    // memory for the other drivers' variables
+    static uint16_t __attribute__((far)) frame[MIC_FRAME_LEN];
+    uint16_t seq = 0, i, min, max;
+    char buffer[22]; // 21 characters per line on the OLED
+
+    mic_init(MIC_SAMPLE_RATE);
+    UartInitBaud(MIC_UART_BAUD);
+
+    sprintf(buffer, "%u Hz, %u samples", MIC_SAMPLE_RATE, MIC_FRAME_LEN);
+    oled_draw_string(1, buffer);
+    sprintf(buffer, "UART %lu baud", (unsigned long) MIC_UART_BAUD);
+    oled_draw_string(2, buffer);
+    oled_draw_string(3, "Run mic_viewer");
+    oled_update();
+
+    running = 1;
+    while (running) {
+
+        mic_capture(frame, MIC_FRAME_LEN);
+        mic_send_frame(frame, MIC_FRAME_LEN, seq);
+
+        // show the peak to peak level about once per second
+        if ((seq & 0x07) == 0) {
+            min = 4095;
+            max = 0;
+            for (i = 0; i < MIC_FRAME_LEN; i++) {
+                if (frame[i] < min) min = frame[i];
+                if (frame[i] > max) max = frame[i];
+            }
+            sprintf(buffer, "Level: %4u mV p-p", (uint16_t) (((uint32_t) (max - min) * 3300) / 4095));
+            oled_draw_string(5, buffer);
+            sprintf(buffer, "Frames sent: %u", seq);
+            oled_draw_string(6, buffer);
+            oled_update();
+        }
+
+        seq++;
+    }
+
+    UartInit(); // back to the default 9600 baud
+}

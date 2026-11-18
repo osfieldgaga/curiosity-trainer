@@ -1,0 +1,83 @@
+{
+  "captured": "2026-11-17",
+  "os": {
+    "name": "Debian GNU/Linux 13 (trixie)",
+    "kernel": "6.12.113+deb13-amd64"
+  },
+  "vscode": {
+    "version": "1.144.0",
+    "extensions": [
+      "mathworks.language-matlab@1.3.16",
+      "microchip.mplab-ai-coding-assistant@1.2.4",
+      "microchip.mplab-clangd@2.1.0",
+      "microchip.mplab-code-configurator@1.0.7",
+      "microchip.mplab-core-da@2.2.0",
+      "microchip.mplab-data-visualizer@0.1.5",
+      "microchip.mplab-extension-pack@1.2.9",
+      "microchip.mplab-extensions-core@2.4.2",
+      "microchip.mplab-extensions-platforms@2.1.1",
+      "microchip.mplab-kconfig@1.6.0",
+      "microchip.mplab-ui@2.2.3",
+      "microchip.mplabx-importer@2.2.0",
+      "microchip.runcmake@1.11.0",
+      "microchip.toolchains@1.11.3",
+      "ms-python.debugpy@2026.6.0",
+      "ms-python.python@2026.10.0",
+      "ms-python.vscode-pylance@2026.4.1",
+      "ms-python.vscode-python-envs@1.44.0",
+      "ms-vscode.cmake-tools@1.25.10",
+      "ms-vscode.cpptools@1.35.6",
+      "ms-vscode.cpptools-extension-pack@1.5.1",
+      "ms-vscode.cpptools-themes@2.0.0"
+    ]
+  },
+  "compilers": {
+    "xc16": [
+      "v2.00",
+      "v2.10"
+    ],
+    "xc32": [
+      "v4.21"
+    ],
+    "xc16_in_use": "elf-gcc (Microchip Technology) 4.5.1 (XC16, Microchip v2.10)  (A) Build date: Mar 27 2023"
+  },
+  "mplab_x_ide": [
+    "v6.05"
+  ],
+  "packs": {
+    "nEDBG_TP": [
+      "1.20.1186"
+    ],
+    "dsPIC33CK-MC_DFP": [
+      "1.5.126",
+      "1.6.238",
+      "1.11.412"
+    ]
+  },
+  "mplab_extension_tools": {
+    "mplab_backend": [
+      "0.4.956",
+      "0.4.1065"
+    ],
+    "make": [
+      "v4.4.1"
+    ],
+    "ninja": [
+      "v1.13.2"
+    ],
+    "hexmate": [
+      "v3.00"
+    ],
+    "zulu-jre-21": [
+      "v21.0.12",
+      "v21.0.13"
+    ]
+  },
+  "python": {
+    "version": "3.13.5",
+    "packages": "pyserial 3.5, numpy 2.2.4, matplotlib 3.10.1+dfsg1"
+  },
+  "matlab": [
+    "R2025a"
+  ]
+}
