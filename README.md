@@ -190,3 +190,9 @@ Turn the slide switches SW1-SW4 OFF: they share their pins with the keypad rows.
 
 ### Link Error: Could not allocate section .ndata (or .nbss)
 The 4 KB of near data memory is full. Declare large arrays `static` with `__attribute__((far))`, and never define variables in a header file: `static uint8_t fb[1024]` used to be in `oled.h` and `io_expander.h`, which created a separate 1 KB copy in every file including them.
+
+---
+
+## License
+
+Copyright (c) 2025-2026 Kettering University, Osfield Gaga and Jeremy Gooch. All rights reserved, see [LICENSE](LICENSE). Changes between versions are listed in [CHANGELOG.md](CHANGELOG.md), and the notes of the current release in [RELEASE_NOTES.md](RELEASE_NOTES.md).
