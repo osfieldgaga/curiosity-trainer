@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 9, 2025, 5:27 PM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -37,7 +37,11 @@
 #define SW4 PORTCbits.RC2
 #define SW5 PORTBbits.RB15
 #define SW6 PORTBbits.RB14
-#define SW7 PORTBbits.RB13
+
+//#define SW7 PORTBbits.RB13
+#define SW7 PORTDbits.RD1
+
+
 #define SW8 PORTBbits.RB12
 
 #define SW1_TRIS TRISCbits.TRISC5
@@ -46,7 +50,12 @@
 #define SW4_TRIS TRISCbits.TRISC2
 #define SW5_TRIS TRISBbits.TRISB15
 #define SW6_TRIS TRISBbits.TRISB14
-#define SW7_TRIS TRISBbits.TRISB13
+
+
+//#define SW7_TRIS TRISBbits.TRISB13
+#define SW7_TRIS TRISDbits.TRISD1
+
+
 #define SW8_TRIS TRISBbits.TRISB12
 
 //#define SW1_ANSEL ANSELCbits.ANSELC5

@@ -6,10 +6,17 @@
 #define	UART_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
+#include <stdint.h>
 
-void UartInit(void);
+#define UART_BAUD 9600
+
+void UartInit(void);               // UART_BAUD (9600) 8N1 on the debugger's virtual COM port
+void UartInitBaud(uint32_t baud);  // same, at any baud rate (e.g. 250000 for fast data)
+void UartSendBuffer(const uint8_t *pData, uint16_t len); // send raw bytes, zeros included
 void UartSendByte(char data);
 void UartSendString(char *pData);
+uint8_t UartDataAvailable(void); // 1 if a received byte is waiting (also clears a receive overrun)
+char UartReadByte(void);          // blocks until a byte is received
 
 #ifdef	__cplusplus
 extern "C" {

@@ -60,10 +60,16 @@
 // FOSC
 #pragma config POSCMD = NONE            // Primary Oscillator Mode Select bits (Primary Oscillator disabled)
 #pragma config OSCIOFNC = OFF           // OSC2 Pin Function bit (OSC2 is clock output)
-#pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
+//#pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
 #pragma config PLLKEN = ON              // PLL Lock Enable (PLL clock output will be disabled if LOCK is lost)
 #pragma config XTCFG = G3               // XT Config (24-32 MHz crystals)
 #pragma config XTBST = ENABLE           // XT Boost (Boost the kick-start)
+
+
+// Clock switching must be enabled: main() switches from FRC to FRC + PLL at
+// start-up. The fail-safe clock monitor is disabled
+#pragma config FCKSM = CSECMD           // Clock Switching Mode bits (Clock switching enabled, Fail-safe Clock Monitor disabled)   
+
 
 // FWDT
 #pragma config RWDTPS = PS2147483648    // Run Mode Watchdog Timer Post Scaler select bits (1:2147483648)
@@ -77,7 +83,7 @@
 #pragma config BISTDIS = DISABLED       // Memory BIST Feature Disable (mBIST on reset feature disabled)
 
 // FICD
-#pragma config ICS = PGD1               // ICD Communication Channel Select bits (Communicate on PGC1 and PGD1)
+#pragma config ICS = PGD3               // ICD Communication Channel Select bits (Communicate on PGC1 and PGD1)
 #pragma config JTAGEN = OFF             // JTAG Enable bit (JTAG is disabled)
 
 // FDMTIVTL
@@ -115,6 +121,8 @@
 #include "utils.h"
 #include <stdint.h>
 #include "seven_segment.h"
+#include "pushbuttons.h"
+#include "examples.h"
 
 uint8_t seven_seg_enable = FALSE;
 
@@ -129,6 +137,10 @@ uint8_t seven_seg_enable = FALSE;
  * The ISR sets a tFlag, which is by default set to 1 second. This can be configu-
  * red in the config.h file to change the period
  * 
+ * The ISR also checks the center button: a press ends the running example by
+ * clearing "running". Since the ISR runs even while an example is busy in a
+ * delay, a short press is never missed.
+ * 
  * The ISR is also used to refresh the seven segment display, if enabled.
  * The enable flag of the seven segment is used to ensure the refreshing only
  * happens when the seven segment display is explicitely enabled by the user.
@@ -137,12 +149,30 @@ uint8_t seven_seg_enable = FALSE;
  * devices may share the seven segment pins
  *****************************************************************************/
 
-uint16_t msCount = 0;
-uint8_t tFlag = 0;
+volatile uint16_t msCount = 0;
+volatile uint8_t tFlag = 0;
+volatile uint16_t msTicks = 0;
 
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
 
+    // how long the center button has been held, in ms (up to BTN_DEBOUNCE_MS)
+    static uint8_t btnCount = 0;
+
     msCount++;
+    msTicks++;
+
+    // the button is active low. The example only ends once per press: holding
+    // the button down doesn't skip through the next examples
+    if (BTN_C == 0) {
+        if (btnCount < BTN_DEBOUNCE_MS) {
+            btnCount++;
+            if (btnCount == BTN_DEBOUNCE_MS) {
+                running = 0;
+            }
+        }
+    } else {
+        btnCount = 0;
+    }
 
     if (seven_seg_enable) {
         refresh_seven_seg();
@@ -153,7 +183,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
         msCount = 0;
     }
 
-    if (enDelay) {
+    if (enDelay && delayCounterMs > 0) {
         // delayCounterMs is an extern coming from utils.c/h
         // it is used as the delay counter, calling the delay function sets
         // this value and counts down
@@ -163,11 +193,11 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     // clear interrupt flag
     IFS0bits.T1IF = 0;
 }
-
 void init_T1() {
+    
 
     TMR1 = 0;
-    PR1 = T1_PERIOD; // 1ms
+    PR1 = T1_PERIOD; // 1ms 
 
     T1CONbits.TCKPS = 0x01; //1:8 prescaler
 

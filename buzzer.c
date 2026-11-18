@@ -59,7 +59,7 @@ void play_music() {
 // Convert a desired duration to the corresponding PPGxPER value
 
 int freq_to_pgxper(int freq) {
-    return (FP / freq) - 1;
+    return (int) (FP / freq) - 1;
 }
 
 // Notes are played on PWM4, either a note is played or a rest

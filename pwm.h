@@ -10,16 +10,16 @@
 #ifndef PWM_H
 #define	PWM_H
 
-// set FCY before including libpic30.h, else it throws an error
-
-#define FCY 4000000UL // Set instruction cycle frequency to 4 MHz (Unsigned Long)
+// FCY must be set before including libpic30.h, it is defined in config.h
+#include "config.h"
 #include <libpic30.h>
 #include <xc.h> // include processor files - each processor file is guarded.  
 
 
 // --- Global Constants ---
 
-#define FP 4000000
+// PWM4 (buzzer) counter clock: Fosc / 16 = 32 MHz / 16, see PWM4_Initialize()
+#define FP 2000000UL
 
 #define PWM1_PERIOD
 #define PWM1_DC

@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 09, 2025, 11:35 AM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 
 // This is a guard condition so that contents of this file are not included
@@ -44,7 +44,9 @@
 
 #define RGB_R LATBbits.LATB10
 #define RGB_G LATDbits.LATD8
-#define RGB_B LATDbits.LATD1
+
+//#define RGB_B LATDbits.LATD1 Old working V1
+#define RGB_B LATBbits.LATB13
 
 
 
@@ -61,7 +63,9 @@
 
 #define RGB_R_TRIS TRISBbits.TRISB10
 #define RGB_G_TRIS TRISDbits.TRISD8
-#define RGB_B_TRIS TRISDbits.TRISD1
+
+//#define RGB_B_TRIS TRISDbits.TRISD1 // V1
+#define RGB_B_TRIS TRISBbits.TRISB13
 
 
 
@@ -78,7 +82,10 @@
 
 #define RGB_R_ANSEL ANSELBbits.ANSELB10
 #define RGB_G_ANSEL ANSELDbits.ANSELD8
-#define RGB_B_ANSEL ANSELDbits.ANSELD1
+
+//#define RGB_B_ANSEL ANSELDbits.ANSELD1 // V1
+#define RGB_B_ANSEL ANSELBbits.ANSELB13
+
 
 
 #define LED_ON 0
@@ -87,6 +94,7 @@
 #define RGB_ON 1
 #define RGB_OFF 0
 
+void LED_Init(void);
 void turn_off_leds();
 void set_led_state(uint8_t index, uint8_t state);
 void set_rgb(uint8_t r, uint8_t g, uint8_t b);

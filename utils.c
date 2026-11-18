@@ -14,8 +14,9 @@
 #include <stdint.h>
 #include "seven_segment.h"
 
-uint16_t delayCounterMs;
-uint8_t enDelay = 0;
+// volatile: both are changed by the T1 ISR, the compiler must re-read them
+volatile uint16_t delayCounterMs;
+volatile uint8_t enDelay = 0;
 
 void msDelay(int ms) {
     delayCounterMs = ms;

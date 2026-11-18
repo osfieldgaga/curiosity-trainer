@@ -1,0 +1,11 @@
+{
+    "mplab.clangd.compileCommandsDir": "${workspaceFolder}/_build/CuriosityTrainer/default",
+    "memory-inspector.debugTypes": [
+        "arm-debugger",
+        "embedded-debug",
+        "gdb",
+        "gdbtarget",
+        "mplab-core-da"
+    ],
+    "cmake.sourceDirectory": "${workspaceFolder}/cmake/CuriosityTrainer/default"
+}

@@ -20,7 +20,7 @@
  *      November 23, 2025, 2:03 PM
  * 
  *  @Last modification
- *      December 09, 2025, 11:35 AM
+ *      October 28, 2026
  */
 
 
@@ -53,11 +53,109 @@ void init_keypad() {
     COL3_ANSEL = ANSEL_DIGITAL;
     //    COL4_ANSEL = ANSEL_DIGITAL;
 
-    //        ROW1_ANSEL = ANSEL_DIGITAL;
-    //        ROW2_ANSEL = ANSEL_DIGITAL;
+    //            ROW1_ANSEL = ANSEL_DIGITAL;
+    //            ROW2_ANSEL = ANSEL_DIGITAL;
     ROW3_ANSEL = ANSEL_DIGITAL;
     ROW4_ANSEL = ANSEL_DIGITAL;
 
+    ROW1_CNPU = 1;
+    ROW2_CNPU = 1;
+    ROW3_CNPU = 1;
+    ROW4_CNPU = 1;
+
+}
+
+// Read all 4 rows at once, bit 0 = ROW1 ... bit 3 = ROW4
+
+static uint8_t read_rows(void) {
+    return (ROW4 << 3) | (ROW3 << 2) | (ROW2 << 1) | ROW1;
+}
+
+// Drive a single row low (on = 1) or release it back to an input (on = 0)
+
+static void drive_row_low(int row, uint8_t on) {
+    uint8_t tris = on ? TRIS_OUTPUT : TRIS_INPUT;
+
+    switch (row) {
+        case 0:
+            ROW1_LAT = 0;
+            ROW1_TRIS = tris;
+            break;
+        case 1:
+            ROW2_LAT = 0;
+            ROW2_TRIS = tris;
+            break;
+        case 2:
+            ROW3_LAT = 0;
+            ROW3_TRIS = tris;
+            break;
+        case 3:
+            ROW4_LAT = 0;
+            ROW4_TRIS = tris;
+            break;
+        default:
+            break;
+    }
+}
+
+/*******************************************************************************
+ * Check the keypad rows for interference from the slide switches
+ * 
+ * Each row pin is shared with a slide switch (ROW1 <-> SW1 ... ROW4 <-> SW4).
+ * In keypad mode the switches common line is left floating, so every switch
+ * that is ON ties its row to the other rows that are ON. Those rows can't be
+ * told apart anymore, and readKey() reports the wrong key.
+ * 
+ * The columns are released first, so a pressed key can't short a driven row
+ * to a driven column. Then:
+ *  - a row already low with nothing driving it is held to ground by its switch
+ *  - each row is pulled low one at a time, any other row that follows it is
+ *    tied to it through the switches
+ * 
+ * Returns a bitmask of the affected rows (bit 0 = ROW1), 0 if the keypad can
+ * be used
+ ******************************************************************************/
+uint8_t keypad_check_rows(void) {
+
+    uint8_t rows, affected;
+    int i, j;
+
+    COL1_TRIS = TRIS_INPUT;
+    COL2_TRIS = TRIS_INPUT;
+    COL3_TRIS = TRIS_INPUT;
+    __delay_us(20); // let the pull-ups bring the rows back high
+
+    // rows held low without anything driving them
+    affected = ~read_rows() & 0x0F;
+
+    for (i = 0; i < 4; i++) {
+
+        if (affected & (1 << i)) {
+            continue;
+        }
+
+        drive_row_low(i, 1);
+        __delay_us(5);
+        rows = read_rows();
+        drive_row_low(i, 0);
+        __delay_us(20); // let the pull-ups bring the rows back high
+
+        for (j = 0; j < 4; j++) {
+            if (j != i && !(rows & (1 << j))) {
+                affected |= (1 << i) | (1 << j);
+            }
+        }
+    }
+
+    // restore the columns for readKey()
+    COL1 = COL_OFF;
+    COL2 = COL_OFF;
+    COL3 = COL_OFF;
+    COL1_TRIS = TRIS_OUTPUT;
+    COL2_TRIS = TRIS_OUTPUT;
+    COL3_TRIS = TRIS_OUTPUT;
+
+    return affected;
 }
 
 /*******************************************************************************
@@ -154,6 +252,7 @@ unsigned char readKey(uint8_t outputMode) {
 
                     break;
             }
+
         }
 
 

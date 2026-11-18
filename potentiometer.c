@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 09, 2025, 5:23 PM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 #include "xc.h"
 #include "adc.h"
@@ -29,8 +29,7 @@
 #include "config.h"
 #include <stdint.h>
 
-#define FCY 4000000UL // The 'UL' ensures it's treated as an unsigned long
-#include <libpic30.h>
+#include <libpic30.h> // FCY comes from config.h
 
 // initialize the potentiometer pins
 void POT_Init(void) {

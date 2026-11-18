@@ -20,8 +20,8 @@
  *      November 23, 2025, 2:03 PM
  * 
  *  @Last modification
- *      December 09, 2025, 11:35 AM
-/* ************************************************************************** */
+ *      October 28, 2026
+* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -36,9 +36,9 @@
 //#define COL2_TRIS TRISCbits.TRISC0
 //#define COL1_TRIS TRISCbits.TRISC1
 
-#define COL3_TRIS TRISAbits.TRISA4
 #define COL1_TRIS TRISCbits.TRISC1
 #define COL2_TRIS TRISCbits.TRISC0
+#define COL3_TRIS TRISAbits.TRISA4
 
 #define ROW4_TRIS TRISCbits.TRISC2
 #define ROW3_TRIS TRISCbits.TRISC3
@@ -46,24 +46,36 @@
 #define ROW1_TRIS TRISCbits.TRISC5
 
 //#define COL4 LATBbits.LATB9
-#define COL3 LATAbits.LATA4
 #define COL1 LATCbits.LATC1
 #define COL2 LATCbits.LATC0
+#define COL3 LATAbits.LATA4
 
 #define ROW4 PORTCbits.RC2
 #define ROW3 PORTCbits.RC3
 #define ROW2 PORTCbits.RC4
 #define ROW1 PORTCbits.RC5
 
+// used to drive a row low when checking for shorted rows
+#define ROW4_LAT LATCbits.LATC2
+#define ROW3_LAT LATCbits.LATC3
+#define ROW2_LAT LATCbits.LATC4
+#define ROW1_LAT LATCbits.LATC5
+
+// internal pull-ups, the rows read high when no key is pressed
+#define ROW4_CNPU CNPUCbits.CNPUC2
+#define ROW3_CNPU CNPUCbits.CNPUC3
+#define ROW2_CNPU CNPUCbits.CNPUC4
+#define ROW1_CNPU CNPUCbits.CNPUC5
+
 //#define COL4_ANSEL ANSELBbits.ANSELB9
-#define COL3_ANSEL ANSELAbits.ANSELA4
 #define COL1_ANSEL ANSELCbits.ANSELC1
 #define COL2_ANSEL ANSELCbits.ANSELC0
+#define COL3_ANSEL ANSELAbits.ANSELA4
 
 #define ROW4_ANSEL ANSELCbits.ANSELC2
 #define ROW3_ANSEL ANSELCbits.ANSELC3
-//#define ROW2_ANSEL ANSELCbits.ANSELC4
-//#define ROW1_ANSEL ANSELCbits.ANSELC5
+#define ROW2_ANSEL ANSELCbits.ANSELC4
+#define ROW1_ANSEL ANSELCbits.ANSELC5
 
 #define COL_ON 0
 #define COL_OFF 1
@@ -76,6 +88,7 @@
 
 void init_keypad();
 unsigned char readKey(uint8_t outputMode);
+uint8_t keypad_check_rows(void); // returns a bitmask of rows tied by the switches, 0 if OK
 
 
 #ifdef	__cplusplus

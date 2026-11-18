@@ -21,7 +21,7 @@
  * 
  *  @Last modification
  *      December 9, 2025, 7:10 PM
-/* ************************************************************************** */
+* ************************************************************************** */
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -31,8 +31,8 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 
 
-extern uint16_t delayCounterMs;
-extern uint8_t enDelay;
+extern volatile uint16_t delayCounterMs;
+extern volatile uint8_t enDelay;
 
 
 void msDelay(int ms);
