@@ -1,0 +1,40 @@
+Curiosity Trainer firmware, documentation and tools
+
+Copyright (c) 2025-2026 Kettering University, Osfield Gaga and Jeremy Gooch.
+All rights reserved.
+
+This software, its documentation and the accompanying tools (the "Software")
+are made available to the students and staff of Kettering University for use
+in Kettering University courses and projects with the Curiosity Trainer
+board. Any other use, and any copying, modification, publication or
+redistribution of the Software, in whole or in part, requires the prior
+written permission of the copyright holders.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Third-party material
+--------------------
+
+The following parts are not covered by the copyright above and remain the
+property of their respective owners:
+
+- i2c_master.c and i2c_master.h: dsPIC33C I2C Software Library,
+  Copyright (c) 2019 Microchip Technology Inc., used under the Microchip
+  software license reproduced in those files (use with Microchip products
+  only).
+
+- docs/datasheets: datasheets and user guides of the components used on the
+  board, the property of their manufacturers (Microchip Technology, Texas
+  Instruments, Winstar Display and others), included for reference only.
+
+- buzzer.c: the note sequence of "Megalovania" (Toby Fox) played by
+  play_music(), a musical work owned by its rights holder.
+
+- The Kettering University name, logo and bulldog images (oled.h,
+  docs/manual/figures) are trademarks of Kettering University.

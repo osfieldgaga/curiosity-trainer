@@ -29,3 +29,5 @@ nbproject/tmp/
 # Office lock files (a document open in LibreOffice/Word)
 .~lock.*#
 ~$*
+
+RELEASE_NOTES.md
